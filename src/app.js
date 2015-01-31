@@ -6,5 +6,6 @@ export class App {
 
   addNewTodo(newTodo = this.newTodo) {
     this.todos.push(newTodo);
+    this.newTodo = null;
   }
 }

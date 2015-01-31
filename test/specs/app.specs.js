@@ -40,5 +40,11 @@ describe('app.js', function(){
         sut.todos.should.contain("foo");
       });
 
+      it('should reset new todo field back to empty', function() {
+        sut.newTodo = "foo";
+        sut.addNewTodo("foo");
+        expect(sut.newTodo).to.be.null();
+      });
+
     });
 });
