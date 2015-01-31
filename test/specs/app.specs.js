@@ -21,12 +21,22 @@ describe('app.js', function(){
         sut.todos.should.be.empty();
       });
 
+      it('should init new todo field with empty value', function() {
+        expect(sut.newTodo).to.be.null();
+      });
+
     });
 
     describe('when adding a new todo', function() {
 
       it('should add it to the list of todos', function() {
         sut.addNewTodo("foo");
+        sut.todos.should.contain("foo");
+      });
+
+      it('should add current newTodo value if nothing passed into function', function() {
+        sut.newTodo = "foo";
+        sut.addNewTodo();
         sut.todos.should.contain("foo");
       });
 
