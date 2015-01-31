@@ -40,7 +40,11 @@
     "object.assign": "^1.0.3",
     "run-sequence": "^1.0.2",
     "vinyl-paths": "^1.0.0",
-    "gulp-protractor": "^0.0.12"
+    "gulp-protractor": "^0.0.12",
+    "gulp-mocha": "~2.0.0",
+    "chai": "~1.10.0",
+    "sinon": "~1.12.2",
+    "es6-module-loader": "~0.12.0"
   },
   "jspm": {
     "dependencies": {
