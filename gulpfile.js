@@ -16,6 +16,7 @@ var plumber = require('gulp-plumber');
 var tools = require('aurelia-tools');
 var protractor = require("gulp-protractor").protractor;
 var webdriver_update = require('gulp-protractor').webdriver_update;
+var mocha = require('gulp-mocha');
 
 var path = {
   source:'src/**/*.js',
@@ -24,7 +25,8 @@ var path = {
   output:'dist/',
   doc:'./doc',
   e2eSpecsSrc: 'test/e2e/src/*.js',
-  e2eSpecsDist: 'test/e2e/dist/'
+  e2eSpecsDist: 'test/e2e/dist/',
+  specs:'test/specs/**/*.js'
 };
 
 var compilerOptions = {
@@ -155,6 +157,16 @@ gulp.task('serve', ['build'], function(done) {
   }, done);
 });
 
+gulp.task('test', function() {
+  gulp.src([path.specs], { read: false })
+    .pipe(mocha({ timeout: 5000, reporter: 'spec' }))
+    .on('error', function (err) {
+      if (!/tests? failed/.test(err.stack)) {
+        console.log(err.stack);
+      }
+    });
+});
+
 function reportChange(event){
   console.log('File ' + event.path + ' was ' + event.type + ', running tasks...');
 }
@@ -163,6 +175,7 @@ gulp.task('watch', ['serve'], function() {
   gulp.watch(path.source, ['build-system', browserSync.reload]).on('change', reportChange);
   gulp.watch(path.html, ['build-html', browserSync.reload]).on('change', reportChange);
   gulp.watch(path.style, browserSync.reload).on('change', reportChange);
+  gulp.watch([path.source, path.specs], ['test']).on('change', reportChange);
 });
 
 gulp.task('prepare-release', function(callback){
