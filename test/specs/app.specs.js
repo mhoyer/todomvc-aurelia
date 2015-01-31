@@ -31,13 +31,13 @@ describe('App', function(){
 
       it('should add it to the list of todos', function() {
         sut.addNewTodo("foo");
-        sut.todos.should.contain("foo");
+        sut.todos[0].title.should.equal("foo");
       });
 
       it('should add current newTodo value if nothing passed into function', function() {
         sut.newTodoTitle = "foo";
         sut.addNewTodo();
-        sut.todos.should.contain("foo");
+        sut.todos[0].title.should.equal("foo");
       });
 
       it('should reset new todo field back to empty', function() {

@@ -1,3 +1,5 @@
+import {TodoItem} from './todo-item';
+
 export class App {
   constructor() {
     this.todos = [];
@@ -5,7 +7,8 @@ export class App {
   }
 
   addNewTodo(title = this.newTodoTitle) {
-    this.todos.push(title);
+    var newTodoItem = new TodoItem(title);
+    this.todos.push(newTodoItem);
     this.newTodoTitle = null;
   }
 }
