@@ -1,11 +1,11 @@
 export class App {
   constructor() {
     this.todos = [];
-    this.newTodo = null;
+    this.newTodoTitle = null;
   }
 
-  addNewTodo(newTodo = this.newTodo) {
-    this.todos.push(newTodo);
-    this.newTodo = null;
+  addNewTodo(title = this.newTodoTitle) {
+    this.todos.push(title);
+    this.newTodoTitle = null;
   }
 }

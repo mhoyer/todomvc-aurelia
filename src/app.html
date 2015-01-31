@@ -1,8 +1,8 @@
 <template>
   <header id="header">
     <h1>todos</h1>
-    <form role="form" submit.delegate="addNewTodo(newTodo)">
-      <input id="new-todo" value.bind="newTodo" placeholder="What needs to be done?" autofocus>
+    <form role="form" submit.delegate="addNewTodo(newTodoTitle)">
+      <input id="new-todo" value.bind="newTodoTitle" placeholder="What needs to be done?" autofocus>
     </form>
   </header>
 
@@ -13,7 +13,7 @@
       </li>
     </ul>
   </section>
-  
+
   <footer id="footer">
   </footer>
 </template>

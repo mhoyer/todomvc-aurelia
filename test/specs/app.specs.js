@@ -5,7 +5,7 @@ var chai = require('chai')
   , expect = chai.expect
   , should = chai.should();
 
-describe('app.js', function(){
+describe('App', function(){
     var sut;
 
     beforeEach(function(done) {
@@ -22,7 +22,7 @@ describe('app.js', function(){
       });
 
       it('should init new todo field with empty value', function() {
-        expect(sut.newTodo).to.be.null();
+        expect(sut.newTodoTitle).to.be.null();
       });
 
     });
@@ -35,15 +35,15 @@ describe('app.js', function(){
       });
 
       it('should add current newTodo value if nothing passed into function', function() {
-        sut.newTodo = "foo";
+        sut.newTodoTitle = "foo";
         sut.addNewTodo();
         sut.todos.should.contain("foo");
       });
 
       it('should reset new todo field back to empty', function() {
-        sut.newTodo = "foo";
+        sut.newTodoTitle = "foo";
         sut.addNewTodo("foo");
-        expect(sut.newTodo).to.be.null();
+        expect(sut.newTodoTitle).to.be.null();
       });
 
     });
