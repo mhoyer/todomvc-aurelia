@@ -8,9 +8,9 @@
 
   <section id="main">
     <ul id="todo-list">
-      <li repeat.for="todo of todos">
+      <li repeat.for="todo of todos" class="${todo.isChecked ? 'checked' : ''}">
         <input type="checkbox" checked.bind="todo.isChecked">
-        ${todo.title}
+        <label>${todo.title}</label>
       </li>
     </ul>
   </section>

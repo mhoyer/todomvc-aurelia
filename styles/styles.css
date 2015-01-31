@@ -1,0 +1,3 @@
+#todo-list .checked label {
+  text-decoration: line-through;
+}
