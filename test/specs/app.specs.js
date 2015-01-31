@@ -17,8 +17,8 @@ describe('app.js', function(){
 
     describe('when creating a new instance', function() {
 
-      it('it should simply work, dude', function() {
-        expect(sut).to.not.be.null();
+      it('should init empty list of todos', function() {
+        sut.todos.should.be.empty();
       });
 
     });
