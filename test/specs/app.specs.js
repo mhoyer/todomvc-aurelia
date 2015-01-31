@@ -22,4 +22,13 @@ describe('app.js', function(){
       });
 
     });
+
+    describe('when adding a new todo', function() {
+
+      it('should add it to the list of todos', function() {
+        sut.addNewTodo("foo");
+        sut.todos.should.contain("foo");
+      });
+
+    });
 });
