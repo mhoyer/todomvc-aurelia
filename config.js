@@ -15,6 +15,7 @@ System.config({
     "aurelia-router": "github:aurelia/router@0.5.3",
     "bootstrap": "github:twbs/bootstrap@3.3.2",
     "font-awesome": "npm:font-awesome@4.3.0",
+    "todomvc-app-css": "npm:todomvc-app-css@1.0.1",
     "underscore": "npm:underscore@1.7.0",
     "github:aurelia/binding@0.3.2": {
       "aurelia-metadata": "github:aurelia/metadata@0.3.1",
@@ -111,3 +112,4 @@ System.config({
     }
   }
 });
+
