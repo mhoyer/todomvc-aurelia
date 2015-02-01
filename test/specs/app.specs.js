@@ -32,11 +32,21 @@ describe('App', function(){
   });
 
   describe('when configuring the router', function() {
+    var config = { map: sinon.spy() };
 
     it('should set the title', function() {
-      var config = {};
-      sut.configureRouter(config);
+      sut.configureRoutes(config);
       config.title.should.equal("TodoMVC");
+    });
+
+    it('should set up the default route', function() {
+      sut.configureRoutes(config);
+
+      var maps = config.map.lastCall.args[0];
+      var defaultRouteMap = maps[0];
+
+      defaultRouteMap.route.should.equal('');
+      defaultRouteMap.moduleId.should.equal('todos');
     });
 
   });
