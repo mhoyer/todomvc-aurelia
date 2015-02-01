@@ -19,10 +19,7 @@ export class Todos {
   }
 
   deleteTodo(todoItem) {
-    var index = this.items.indexOf(todoItem);
-    if (index < 0) return;
-
-    this.items.splice(index, 1);
+    this.items = _(this.items).without(todoItem);
   }
 
   clearCompletedTodos() {
