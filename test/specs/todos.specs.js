@@ -99,39 +99,44 @@ describe('Todos', function(){
     });
   });
 
-  describe('when checking a todo as done', function() {
-    it('should decrease count of items left for doing', function() {
-      sut.addNewTodo("foo");
-      sut.items[0].isChecked = true;
-      sut.countTodosLeft.should.be.equal(0);
-    });
-  });
-
-  describe('when filtering the list of todo items', function() {
+  describe('with two items given', function() {
     beforeEach(function() {
       sut.addNewTodo("foo");
       sut.addNewTodo("bar");
       sut.items[1].isChecked = true;
     });
 
-    it('should hide completed todo items from the list', function() {
-      sut.filter = "active";
+    describe('when counting incompleted todos', function() {
+      it('should calculate the total of items left for doing', function() {
+        sut.countTodosLeft.should.be.equal(1);
+      });
 
-      sut.filteredItems.should.have.length(1);
-      sut.filteredItems[0].title.should.equal("foo")
+      it('should restore count of items left for doing when unchecking', function() {
+        sut.items[1].isChecked = false;
+        sut.countTodosLeft.should.be.equal(2);
+      });
     });
 
-    it('should hide active todo items from the list', function() {
-      sut.filter = "completed";
+    describe('when filtering the list of todo items', function() {
+      it('should hide completed todo items from the list', function() {
+        sut.filter = "active";
 
-      sut.filteredItems.should.have.length(1);
-      sut.filteredItems[0].title.should.equal("bar")
-    });
+        sut.filteredItems.should.have.length(1);
+        sut.filteredItems[0].title.should.equal("foo")
+      });
 
-    it('should not hide any todo item if filter is invalid', function() {
-      sut.filter = "not-supported";
+      it('should hide active todo items from the list', function() {
+        sut.filter = "completed";
 
-      sut.filteredItems.should.have.length(2);
+        sut.filteredItems.should.have.length(1);
+        sut.filteredItems[0].title.should.equal("bar")
+      });
+
+      it('should not hide any todo item if filter is invalid', function() {
+        sut.filter = "not-supported";
+
+        sut.filteredItems.should.have.length(2);
+      });
     });
   });
 
