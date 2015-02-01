@@ -8,7 +8,7 @@
 
   <section id="main">
     <ul id="todo-list">
-      <li repeat.for="todoItem of items" class="${todoItem.isChecked ? 'checked' : ''}">
+      <li repeat.for="todoItem of filteredItems" class="${todoItem.isChecked ? 'checked' : ''}">
         <input type="checkbox" checked.bind="todoItem.isChecked">
         <label>${todoItem.title}</label>
         <button click.delegate="$parent.deleteTodo(todoItem)">x</button>
