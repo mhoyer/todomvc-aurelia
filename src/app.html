@@ -1,22 +1,22 @@
 <template>
   <header id="header">
     <h1>todos</h1>
-    <form role="form" submit.delegate="addNewTodo(newTodoTitle)">
-      <input id="new-todo" value.bind="newTodoTitle" placeholder="What needs to be done?" autofocus>
+    <form role="form" submit.delegate="todos.addNewTodo(newTodoTitle)">
+      <input id="new-todo" value.bind="todos.newTodoTitle" placeholder="What needs to be done?" autofocus>
     </form>
   </header>
 
   <section id="main">
     <ul id="todo-list">
-      <li repeat.for="todo of todos" class="${todo.isChecked ? 'checked' : ''}">
+      <li repeat.for="todo of todos.todos" class="${todo.isChecked ? 'checked' : ''}">
         <input type="checkbox" checked.bind="todo.isChecked">
         <label>${todo.title}</label>
-        <button click.delegate="$parent.deleteTodo(todo)">x</button>
+        <button click.delegate="$parent.todos.deleteTodo(todo)">x</button>
       </li>
     </ul>
   </section>
 
   <footer id="footer">
-    <span id="todo-count">${countTodosLeft} items left</span>
+    <span id="todo-count">${todos.countTodosLeft} items left</span>
   </footer>
 </template>
