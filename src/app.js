@@ -1,4 +1,5 @@
 import {TodoItem} from './todo-item';
+import _ from '../jspm_packages/npm/underscore@1.7.0/underscore';
 
 export class App {
   constructor() {
@@ -17,5 +18,9 @@ export class App {
     if (index < 0) return;
     
     this.todos.splice(index, 1);
+  }
+
+  get countTodosLeft() {
+    return _(this.todos).filter(i => !i.isChecked).length;
   }
 }

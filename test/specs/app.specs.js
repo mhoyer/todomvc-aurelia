@@ -25,6 +25,10 @@ describe('App', function(){
         expect(sut.newTodoTitle).to.be.null();
       });
 
+      it('should not have any item left to be done', function() {
+        sut.countTodosLeft.should.be.equal(0);
+      });
+
     });
 
     describe('when adding a new todo', function() {
@@ -46,6 +50,12 @@ describe('App', function(){
         expect(sut.newTodoTitle).to.be.null();
       });
 
+      it('should increase count of items left', function() {
+        sut.newTodoTitle = "foo";
+        sut.addNewTodo("foo");
+        sut.countTodosLeft.should.be.equal(1);
+      });
+
     });
 
     describe('when deleting a todo', function() {
@@ -65,5 +75,18 @@ describe('App', function(){
         sut.todos.should.contain(fakeTodo);
       });
 
+      it('should decrease count of items left', function() {
+        sut.deleteTodo(fakeTodo);
+        sut.countTodosLeft.should.be.equal(0);
+      });
     });
+
+    describe('when checking a todo as done', function() {
+      it('should decrease count of items left for doing', function() {
+        sut.addNewTodo("foo");
+        sut.todos[0].isChecked = true;
+        sut.countTodosLeft.should.be.equal(0);
+      });
+    });
+
 });
