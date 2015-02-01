@@ -2,12 +2,10 @@ import {Router} from 'aurelia-router';
 import {Todos} from './todos';
 
 export class App {
-  static inject() { return [Router, Todos]; }
+  static inject() { return [Router]; }
 
-  constructor(router, todos) {
+  constructor(router) {
     this.router = router;
-    this.todos = todos;
-
     this.router.configure(this.configureRoutes);
   }
 

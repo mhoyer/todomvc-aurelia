@@ -1,0 +1,22 @@
+<template>
+  <header id="header">
+    <h1>Todos</h1>
+    <form role="form" submit.delegate="addNewTodo(newTodoTitle)">
+      <input id="new-todo" value.bind="newTodoTitle" placeholder="What needs to be done?" autofocus>
+    </form>
+  </header>
+
+  <section id="main">
+    <ul id="todo-list">
+      <li repeat.for="todoItem of items" class="${todoItem.isChecked ? 'checked' : ''}">
+        <input type="checkbox" checked.bind="todoItem.isChecked">
+        <label>${todoItem.title}</label>
+        <button click.delegate="$parent.deleteTodo(todoItem)">x</button>
+      </li>
+    </ul>
+  </section>
+
+  <footer id="footer">
+    <span id="todo-count">${countTodosLeft} items left</span>
+  </footer>
+</template>
