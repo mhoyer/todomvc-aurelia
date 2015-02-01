@@ -19,6 +19,10 @@ describe('Todos', function(){
 
     describe('when creating a new instance', function() {
 
+      it('should not have a filter set', function() {
+        expect(sut.filter).to.be.undefined();
+      });
+
       it('should init empty list of todo items', function() {
         sut.items.should.be.empty();
       });

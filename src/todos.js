@@ -3,6 +3,7 @@ import _ from 'underscore';
 
 export class Todos {
   constructor() {
+    this.filter = undefined;
     this.items = [];
     this.newTodoTitle = null;
   }
