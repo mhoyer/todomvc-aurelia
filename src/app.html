@@ -11,6 +11,7 @@
       <li repeat.for="todo of todos" class="${todo.isChecked ? 'checked' : ''}">
         <input type="checkbox" checked.bind="todo.isChecked">
         <label>${todo.title}</label>
+        <button click.delegate="$parent.deleteTodo(todo)">x</button>
       </li>
     </ul>
   </section>
