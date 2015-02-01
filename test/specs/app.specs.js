@@ -45,7 +45,8 @@ describe('App', function(){
       var maps = config.map.lastCall.args[0];
       var defaultRouteMap = maps[0];
 
-      defaultRouteMap.route.should.equal('');
+      defaultRouteMap.route.should.contain('');
+      defaultRouteMap.route.should.contain(':filter');
       defaultRouteMap.moduleId.should.equal('todos');
     });
 
