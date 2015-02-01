@@ -107,4 +107,32 @@ describe('Todos', function(){
     });
   });
 
+  describe('when filtering the list of todo items', function() {
+    beforeEach(function() {
+      sut.addNewTodo("foo");
+      sut.addNewTodo("bar");
+      sut.items[1].isChecked = true;
+    });
+
+    it('should hide completed todo items from the list', function() {
+      sut.filter = "active";
+
+      sut.filteredItems.should.have.length(1);
+      sut.filteredItems[0].title.should.equal("foo")
+    });
+
+    it('should hide active todo items from the list', function() {
+      sut.filter = "completed";
+
+      sut.filteredItems.should.have.length(1);
+      sut.filteredItems[0].title.should.equal("bar")
+    });
+
+    it('should not hide any todo item if filter is invalid', function() {
+      sut.filter = "not-supported";
+
+      sut.filteredItems.should.have.length(2);
+    });
+  });
+
 });

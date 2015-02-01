@@ -30,6 +30,11 @@ export class Todos {
   }
 
   get filteredItems() {
+    switch(this.filter) {
+      case 'active':    return _(this.items).filter(i => !i.isChecked);
+      case 'completed': return _(this.items).filter(i =>  i.isChecked);
+    }
+
     return this.items;
   }
 }
