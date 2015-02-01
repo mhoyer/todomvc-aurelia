@@ -10,10 +10,11 @@ var chai = require('chai')
 
 describe('App', function(){
   var sut;
+  var fakeRouter = { configure: sinon.spy() };
 
   beforeEach(function(done) {
     system.import('src/app').then(function(module) {
-      sut = new module.App();
+      sut = new module.App(fakeRouter);
       done();
     });
   });
@@ -22,6 +23,10 @@ describe('App', function(){
 
     it('should simply do', function() {
       sut.should.not.be.null();
+    });
+
+    it('should configure router', function() {
+      fakeRouter.configure.called.should.be.true();
     });
 
   });
