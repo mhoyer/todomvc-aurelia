@@ -6,24 +6,23 @@ var chai = require('chai')
   , should = chai.should();
 
 describe('TodoItem', function(){
-    var sut;
+  var sut;
 
-    beforeEach(function(done) {
-      system.import('src/todo-item').then(function(module) {
-        sut = new module.TodoItem("foo");
-        done();
-      });
+  beforeEach(function(done) {
+    system.import('src/todo-item').then(function(module) {
+      sut = new module.TodoItem("foo");
+      done();
+    });
+  });
+
+  describe('when creating a new instance', function() {
+    it('should not mark the item as done', function() {
+      sut.isChecked.should.be.false();
     });
 
-    describe('when creating a new instance', function() {
-
-      it('should not mark the item as done', function() {
-        sut.isChecked.should.be.false();
-      });
-
-      it('should set given title', function() {
-        sut.title.should.equal("foo");
-      });
-
+    it('should set given title', function() {
+      sut.title.should.equal("foo");
     });
+  });
+
 });

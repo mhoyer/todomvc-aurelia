@@ -20,7 +20,6 @@ describe('App', function(){
   });
 
   describe('when creating a new instance', function() {
-
     it('should simply do', function() {
       sut.should.not.be.null();
     });
@@ -28,7 +27,6 @@ describe('App', function(){
     it('should call router configuration', function() {
       fakeRouter.configure.calledWith(sut.configureRoutes).should.be.true();
     });
-
   });
 
   describe('when configuring the router', function() {
@@ -49,6 +47,6 @@ describe('App', function(){
       defaultRouteMap.route.should.contain(':filter');
       defaultRouteMap.moduleId.should.equal('todos');
     });
-
   });
+
 });
