@@ -1,6 +1,5 @@
 import {TodoItem} from './todo-item';
-import _ from '../jspm_packages/npm/underscore@1.7.0/underscore';
-// import _ from 'underscore'; // << would like to see this instead of
+import _ from 'underscore';
 
 export class Todos {
   constructor() {
