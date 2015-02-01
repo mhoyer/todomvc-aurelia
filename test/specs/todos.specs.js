@@ -17,8 +17,8 @@ describe('Todos', function(){
 
     describe('when creating a new instance', function() {
 
-      it('should init empty list of todos', function() {
-        sut.todos.should.be.empty();
+      it('should init empty list of todo items', function() {
+        sut.items.should.be.empty();
       });
 
       it('should init new todo field with empty value', function() {
@@ -33,15 +33,15 @@ describe('Todos', function(){
 
     describe('when adding a new todo', function() {
 
-      it('should add it to the list of todos', function() {
+      it('should add it to the list of todo items', function() {
         sut.addNewTodo("foo");
-        sut.todos[0].title.should.equal("foo");
+        sut.items[0].title.should.equal("foo");
       });
 
       it('should add current newTodo value if nothing passed into function', function() {
         sut.newTodoTitle = "foo";
         sut.addNewTodo();
-        sut.todos[0].title.should.equal("foo");
+        sut.items[0].title.should.equal("foo");
       });
 
       it('should reset new todo field back to empty', function() {
@@ -62,17 +62,17 @@ describe('Todos', function(){
       var fakeTodo = new Object();
 
       beforeEach(function() {
-        sut.todos.push(fakeTodo);
+        sut.items.push(fakeTodo);
       });
 
-      it('should remove it from the list of todos', function() {
+      it('should remove it from the list of todo items', function() {
         sut.deleteTodo(fakeTodo);
-        sut.todos.should.be.empty();
+        sut.items.should.be.empty();
       });
 
-      it('should be fail safe when trying to remove not existing item from the list of todos', function() {
+      it('should be fail safe when trying to remove not existing item from the list of todo items', function() {
         sut.deleteTodo(new Object());
-        sut.todos.should.contain(fakeTodo);
+        sut.items.should.contain(fakeTodo);
       });
 
       it('should decrease count of items left', function() {
@@ -84,7 +84,7 @@ describe('Todos', function(){
     describe('when checking a todo as done', function() {
       it('should decrease count of items left for doing', function() {
         sut.addNewTodo("foo");
-        sut.todos[0].isChecked = true;
+        sut.items[0].isChecked = true;
         sut.countTodosLeft.should.be.equal(0);
       });
     });

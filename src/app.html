@@ -8,10 +8,10 @@
 
   <section id="main">
     <ul id="todo-list">
-      <li repeat.for="todo of todos.todos" class="${todo.isChecked ? 'checked' : ''}">
-        <input type="checkbox" checked.bind="todo.isChecked">
-        <label>${todo.title}</label>
-        <button click.delegate="$parent.todos.deleteTodo(todo)">x</button>
+      <li repeat.for="todoItem of todos.items" class="${todoItem.isChecked ? 'checked' : ''}">
+        <input type="checkbox" checked.bind="todoItem.isChecked">
+        <label>${todoItem.title}</label>
+        <button click.delegate="$parent.todos.deleteTodo(todoItem)">x</button>
       </li>
     </ul>
   </section>
