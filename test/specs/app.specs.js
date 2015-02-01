@@ -47,4 +47,23 @@ describe('App', function(){
       });
 
     });
+
+    describe('when deleting a todo', function() {
+      var fakeTodo = new Object();
+
+      beforeEach(function() {
+        sut.todos.push(fakeTodo);
+      });
+
+      it('should remove it from the list of todos', function() {
+        sut.deleteTodo(fakeTodo);
+        sut.todos.should.be.empty();
+      });
+
+      it('should be fail safe when trying to remove not existing item from the list of todos', function() {
+        sut.deleteTodo(new Object());
+        sut.todos.should.contain(fakeTodo);
+      });
+
+    });
 });

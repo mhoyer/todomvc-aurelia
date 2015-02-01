@@ -11,4 +11,11 @@ export class App {
     this.todos.push(newTodoItem);
     this.newTodoTitle = null;
   }
+
+  deleteTodo(todoItem) {
+    var index = this.todos.indexOf(todoItem);
+    if (index < 0) return;
+    
+    this.todos.splice(index, 1);
+  }
 }
