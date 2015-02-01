@@ -30,4 +30,14 @@ describe('App', function(){
     });
 
   });
+
+  describe('when configuring the router', function() {
+
+    it('should set the title', function() {
+      var config = {};
+      sut.configureRouter(config);
+      config.title.should.equal("TodoMVC");
+    });
+
+  });
 });

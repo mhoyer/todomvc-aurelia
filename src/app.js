@@ -12,5 +12,6 @@ export class App {
   }
 
   configureRoutes(cfg) {
+    cfg.title = "TodoMVC";
   }
 }
