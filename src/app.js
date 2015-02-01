@@ -8,6 +8,9 @@ export class App {
     this.router = router;
     this.todos = todos;
 
-    this.router.configure(cfg => { });
+    this.router.configure(this.configureRoutes);
+  }
+
+  configureRoutes(cfg) {
   }
 }

@@ -25,8 +25,8 @@ describe('App', function(){
       sut.should.not.be.null();
     });
 
-    it('should configure router', function() {
-      fakeRouter.configure.called.should.be.true();
+    it('should call router configuration', function() {
+      fakeRouter.configure.calledWith(sut.configureRoutes).should.be.true();
     });
 
   });
