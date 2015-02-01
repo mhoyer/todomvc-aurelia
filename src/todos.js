@@ -28,4 +28,8 @@ export class Todos {
   get countTodosLeft() {
     return _(this.items).filter(i => !i.isChecked).length;
   }
+
+  get filteredItems() {
+    return this.items;
+  }
 }

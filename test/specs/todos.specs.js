@@ -35,6 +35,10 @@ describe('Todos', function(){
         sut.countTodosLeft.should.be.equal(0);
       });
 
+      it('should not filter any item', function() {
+        sut.filteredItems.should.be.equal(sut.items);
+      });
+
     });
 
     describe('when activating the todo view model', function() {
