@@ -15,6 +15,7 @@ System.config({
     "aurelia-router": "github:aurelia/router@0.5.3",
     "bootstrap": "github:twbs/bootstrap@3.3.2",
     "font-awesome": "npm:font-awesome@4.3.0",
+    "underscore": "npm:underscore@1.7.0",
     "github:aurelia/binding@0.3.2": {
       "aurelia-metadata": "github:aurelia/metadata@0.3.1",
       "aurelia-task-queue": "github:aurelia/task-queue@0.2.2"
@@ -110,4 +111,3 @@ System.config({
     }
   }
 });
-
