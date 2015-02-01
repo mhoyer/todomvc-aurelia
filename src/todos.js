@@ -25,6 +25,10 @@ export class Todos {
     this.items.splice(index, 1);
   }
 
+  clearCompletedTodos() {
+    this.items = _(this.items).filter(i => !i.isChecked);
+  }
+
   get countTodosLeft() {
     return _(this.items).filter(i => !i.isChecked).length;
   }

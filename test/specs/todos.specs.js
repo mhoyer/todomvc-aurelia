@@ -138,6 +138,15 @@ describe('Todos', function(){
         sut.filteredItems.should.have.length(2);
       });
     });
+
+    describe('when clearing the list of completed todo items', function() {
+      it('should delete the completed todo items only', function() {
+        sut.clearCompletedTodos();
+
+        sut.items.should.have.length(1);
+        sut.items[0].title.should.equal("foo")
+      });
+    });
   });
 
 });
