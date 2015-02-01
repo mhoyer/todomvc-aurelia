@@ -8,6 +8,10 @@ export class Todos {
     this.newTodoTitle = null;
   }
 
+  activate(params) {
+    this.filter = params.filter;
+  }
+
   addNewTodo(title = this.newTodoTitle) {
     var newTodoItem = new TodoItem(title);
     this.items.push(newTodoItem);

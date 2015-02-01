@@ -37,6 +37,20 @@ describe('Todos', function(){
 
     });
 
+    describe('when activating the todo view model', function() {
+
+      it('should set the filter', function() {
+        sut.activate({ filter: 'active' });
+        expect(sut.filter).to.be.equal('active');
+      });
+
+      it('should reset the filter if non is passed in', function() {
+        sut.activate({});
+        expect(sut.filter).to.be.undefined();
+      });
+
+    });
+
     describe('when adding a new todo', function() {
 
       it('should add it to the list of todo items', function() {
