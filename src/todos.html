@@ -18,5 +18,11 @@
 
   <footer id="footer">
     <span id="todo-count">${countTodosLeft} items left</span>
+    <ul>
+      <li><a href="#">All</a></li>
+      <li><a href="#/active">Active</a></li>
+      <li><a href="#/completed">Completed</a></li>
+      <li><a click.delegate="clearCompletedTodos()">Clear completed</a></li>
+    </ul>
   </footer>
 </template>
