@@ -19,7 +19,7 @@
           <label click.delegate="todoItem.labelClicked()">${todoItem.title}</label>
           <button click.delegate="$parent.deleteTodo(todoItem)" class="destroy"></button>
         </div>
-        <input class="edit" value="Create a TodoMVC template">
+        <input class="edit" value.bind="todoItem.title">
       </li>
     </ul>
   </section>
