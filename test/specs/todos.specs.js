@@ -62,6 +62,16 @@ describe('Todos', function(){
       sut.items[0].title.should.equal("foo");
     });
 
+    it('should not add the item if title is empty', function() {
+      sut.addNewTodo("");
+      sut.items.length.should.be.equal(0);
+    });
+
+    it('should not add the item if title only has whitespaces', function() {
+      sut.addNewTodo("   ");
+      sut.items.length.should.be.equal(0);
+    });
+
     it('should add current newTodo value if nothing passed into function', function() {
       sut.newTodoTitle = "foo";
       sut.addNewTodo();

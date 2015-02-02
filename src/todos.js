@@ -13,7 +13,10 @@ export class Todos {
   }
 
   addNewTodo(title = this.newTodoTitle) {
+    if (title == undefined) return;
+
     title = title.trim();
+    if (title.length == 0) return;
 
     var newTodoItem = new TodoItem(title);
     this.items.push(newTodoItem);
