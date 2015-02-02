@@ -6,11 +6,13 @@ var chai = require('chai')
   , should = chai.should();
 
 describe('TodoItem', function(){
+  var TodoItem;
   var sut;
 
   beforeEach(function(done) {
     system.import('src/todo-item').then(function(module) {
-      sut = new module.TodoItem("foo");
+      TodoItem = module.TodoItem;
+      sut = new TodoItem("foo");
       done();
     });
   });
@@ -21,6 +23,11 @@ describe('TodoItem', function(){
     });
 
     it('should set given title', function() {
+      sut.title.should.equal("foo");
+    });
+
+    it('should trim given title', function() {
+      sut = new TodoItem("   foo   ");
       sut.title.should.equal("foo");
     });
   });
