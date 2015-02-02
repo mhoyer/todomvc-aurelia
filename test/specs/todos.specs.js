@@ -57,6 +57,11 @@ describe('Todos', function(){
       sut.items[0].title.should.equal("foo");
     });
 
+    it('should trim the title', function() {
+      sut.addNewTodo("    foo     ");
+      sut.items[0].title.should.equal("foo");
+    });
+
     it('should add current newTodo value if nothing passed into function', function() {
       sut.newTodoTitle = "foo";
       sut.addNewTodo();

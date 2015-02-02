@@ -13,6 +13,8 @@ export class Todos {
   }
 
   addNewTodo(title = this.newTodoTitle) {
+    title = title.trim();
+
     var newTodoItem = new TodoItem(title);
     this.items.push(newTodoItem);
     this.newTodoTitle = null;
