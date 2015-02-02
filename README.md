@@ -11,6 +11,7 @@
 ### Support
 
 - [Twitter](http://twitter.com/pixelplastic)
+- [Gitter](https://gitter.im/Aurelia/Discuss)
 
 *Let us [know](https://github.com/tastejs/todomvc/issues) if you discover anything worth sharing.*
 
