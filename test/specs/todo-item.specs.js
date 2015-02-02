@@ -36,4 +36,31 @@ describe('TodoItem', function(){
     });
   });
 
+  describe('when double clicking an item', function() {
+    it('should not set the edit mode when clicked only once', function() {
+      sut.labelClicked();
+      sut.isEditing.should.be.false();
+    });
+
+    // uuuh, not the best way to test time related stuff?
+    it('should activate the edit mode when double clicked within e.g. 50ms', function(done) {
+      sut.labelClicked();
+      setTimeout(function() {
+        sut.labelClicked();
+        sut.isEditing.should.be.true();
+        done();
+      }, 10);
+    });
+
+    it('should not activate the edit mode when double clicked two slow > 350ms', function(done) {
+      sut.labelClicked();
+      setTimeout(function() {
+        sut.labelClicked();
+        sut.isEditing.should.be.false();
+        done();
+      }, 360);
+    });
+
+  });
+
 });
