@@ -30,6 +30,10 @@ describe('TodoItem', function(){
       sut = new TodoItem("   foo   ");
       sut.title.should.equal("foo");
     });
+
+    it('should not activate the edit mode', function() {
+      sut.isEditing.should.be.false();
+    });
   });
 
 });
