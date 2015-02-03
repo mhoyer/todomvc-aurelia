@@ -1,4 +1,6 @@
 <template>
+  <import from="./behaviors/focus"></import>
+
   <header id="header">
     <h1>todos</h1>
     <form role="form" submit.delegate="addNewTodo(newTodoTitle)">
@@ -20,7 +22,7 @@
           <button click.delegate="$parent.deleteTodo(todoItem)" class="destroy"></button>
         </div>
         <form role="form" submit.delegate="todoItem.finishEditing()">
-          <input class="edit" value.bind="todoItem.title" blur.delegate="todoItem.finishEditing()">
+          <input class="edit" value.bind="todoItem.title" blur.delegate="todoItem.finishEditing()" focus.bind="todoItem.isEditing">
         </form>
       </li>
     </ul>
