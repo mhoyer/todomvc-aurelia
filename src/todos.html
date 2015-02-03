@@ -7,7 +7,7 @@
   </header>
 
   <!-- This section should be hidden by default and shown when there are todos -->
-  <section id="main" class="${items.length == 0 ? 'hidden' : ''}">
+  <section id="main" show.bind="items.length">
     <input id="toggle-all" type="checkbox">
     <label for="toggle-all">Mark all as complete</label>
     <ul id="todo-list">
@@ -27,7 +27,7 @@
   </section>
 
   <!-- This footer should hidden by default and shown when there are todos -->
-  <footer id="footer" class="${items.length == 0 ? 'hidden' : ''}">
+  <footer id="footer" show.bind="items.length">
     <!-- This should be `0 items left` by default -->
     <span id="todo-count"><strong>${countTodosLeft}</strong> item left</span>
     <!-- Remove this if you don't implement routing -->
