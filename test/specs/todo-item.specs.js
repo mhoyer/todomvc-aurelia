@@ -63,4 +63,12 @@ describe('TodoItem', function(){
 
   });
 
+  describe('when finishing edit mode', function() {
+    it('should deactivate edit mode', function() {
+      sut.isEditing = true;
+      sut.finishEditing();
+      sut.isEditing.should.be.false();
+    });
+  });
+
 });

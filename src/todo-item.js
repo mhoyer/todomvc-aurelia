@@ -14,4 +14,8 @@ export class TodoItem {
 
     this.lastLabelClick = Date.now();
   }
+
+  finishEditing () {
+    this.isEditing = false;
+  }
 }
