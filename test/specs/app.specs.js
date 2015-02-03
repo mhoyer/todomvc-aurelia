@@ -1,6 +1,6 @@
 'use strict';
 
-var system = require('../../jspm_packages/system.js');
+var system = require('../../jspm_packages/system.src.js');
              require('../../config.js');
 
 var sinon = require('sinon');

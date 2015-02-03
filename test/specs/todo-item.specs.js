@@ -1,6 +1,7 @@
 'use strict';
 
-var system = require('../../jspm_packages/system.js');
+var system = require('../../jspm_packages/system.src.js');
+
 var chai = require('chai')
   , expect = chai.expect
   , should = chai.should();
