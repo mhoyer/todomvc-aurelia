@@ -19,7 +19,9 @@
           <label click.delegate="todoItem.labelClicked()">${todoItem.title}</label>
           <button click.delegate="$parent.deleteTodo(todoItem)" class="destroy"></button>
         </div>
-        <input class="edit" value.bind="todoItem.title">
+        <form role="form" submit.delegate="todoItem.finishEditing()">
+          <input class="edit" value.bind="todoItem.title" blur.delegate="todoItem.finishEditing()">
+        </form>
       </li>
     </ul>
   </section>
