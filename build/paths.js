@@ -6,6 +6,7 @@ module.exports = {
   style:'styles/**/*.css',
   output:'dist/',
   doc:'./doc',
+  specsSrc: 'test/spec/**/*.js',
   e2eSpecsSrc: 'test/e2e/src/*.js',
   e2eSpecsDist: 'test/e2e/dist/'
 };
