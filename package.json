@@ -50,7 +50,9 @@
     "karma-sinon": "~1.0.4",
     "karma-chai": "~0.1.0",
     "mocha": "~2.1.0",
-    "karma-mocha": "~0.1.10"
+    "karma-mocha": "~0.1.10",
+    "karma-mocha-reporter": "~0.3.1",
+    "gulp-karma": "0.0.4"
   },
   "jspm": {
     "dependencies": {
