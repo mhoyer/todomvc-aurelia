@@ -2,6 +2,27 @@
 
 > *Aurelia* is a next generation JavaScript client framework that leverages simple conventions to empower your creativity.
 
+## Local Installation
+
+Requirements:
+
+- [NodeJS](http://nodejs.org/download/)
+- [jspm](http://jspm.io/)
+- [gulp](http://gulpjs.com/)
+
+Clone the repository:
+
+    git clone https://github.com/mhoyer/todomvc-aurelia
+
+Install jspm and npm packages:
+
+    npm install
+    jspm install
+
+Run tests and HTTP-server:
+
+    gulp watch
+
 ## Resources
 
 - [Website](http://aurelia.io/)
@@ -20,17 +41,14 @@
 - following the getting started tutorial: http://aurelia.io/get-started.html
 - attempt to go TDD where possible
 
-### Open questions while developing
+### Open Questions While Developing
 
-- <s>referencing jspm packages in ES6 only works easy through SystemJS (as with the mappings in `config.js`). But I didn't found a way to use those jspm-mappings without SystemJS. e.g. `import {Router} from 'aurelia-router';` won't work. :-(</s>
-  - simply `require` the `config.js` after referencing the `jspm_packages/system.js`
-- `Todos.filteredItems` getter is called infitely - why?
+- See [Issues](https://github.com/mhoyer/todomvc-aurelia/issues/)
 
 ### Todos (I know...)
 
-- merging in the original styles from TodoMVC
+- <s>merging in the original styles from TodoMVC</s>
 - missing local storage support
-
 
 ## Credit
 

@@ -1,22 +1,22 @@
 {
-  "name": "aurelia-skeleton-navigation",
-  "version": "0.9.3",
-  "description": "A starter kit for building a standard navigation-style app with Aurelia.",
+  "name": "todomvc-aurelia",
+  "version": "0.1.0",
+  "description": "TodoMVC sample implementation using Aurelia framework.",
   "keywords": [
     "aurelia",
     "navigation",
     "skeleton"
   ],
-  "homepage": "http://aurelia.io",
+  "homepage": "https://github.com/mhoyer/todomvc-aurelia",
   "bugs": {
-    "url": "https://github.com/aurelia/skeleton-navigation/issues"
+    "url": "https://github.com/mhoyer/todomvc-aurelia/issues"
   },
   "license": "MIT",
-  "author": "Rob Eisenberg <rob@bluespire.com> (http://robeisenberg.com/)",
+  "author": "Marcel Hoyer <mhoyer@pixelplastic.de> (http://marcelhoyer.de/)",
   "main": "dist/commonjs/index.js",
   "repository": {
     "type": "git",
-    "url": "http://github.com/aurelia/skeleton-navigation"
+    "url": "https://github.com/mhoyer/todomvc-aurelia"
   },
   "devDependencies": {
     "aurelia-tools": "git://github.com/aurelia/tools.git",
