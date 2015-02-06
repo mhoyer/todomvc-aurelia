@@ -13,10 +13,6 @@ describe('Todos', () =>{
   });
 
   describe('when creating a new instance', () => {
-    it('should not have a filter set', () => {
-      expect(sut.filter).to.be.undefined();
-    });
-
     it('should init empty list of todo items', () => {
       sut.items.should.be.empty();
     });
@@ -30,19 +26,27 @@ describe('Todos', () =>{
     });
 
     it('should not filter any item', () => {
-      sut.filteredItems.should.be.equal(sut.items);
+      sut.filteredItems.should.be.empty();
     });
   });
 
   describe('when activating the todo view model', () => {
-    it('should set the filter', () => {
+    it('should update the filtered items', () => {
+      sut.updateFilteredItems = sinon.spy();
+
       sut.activate({ filter: 'active' });
-      expect(sut.filter).to.be.equal('active');
+
+      assert(sut.updateFilteredItems.calledOnce);
+      assert(sut.updateFilteredItems.calledWith('active'));
     });
 
-    it('should reset the filter if non is passed in', () => {
+    it('should reset the filtered items if non is passed in', () => {
+      sut.updateFilteredItems = sinon.spy();
+
       sut.activate({});
-      expect(sut.filter).to.be.undefined();
+
+      assert(sut.updateFilteredItems.calledOnce);
+      assert(sut.updateFilteredItems.calledWith(undefined));
     });
   });
 
@@ -129,21 +133,21 @@ describe('Todos', () =>{
 
     describe('when filtering the list of todo items', () => {
       it('should hide completed todo items from the list', () => {
-        sut.filter = "active";
+        sut.updateFilteredItems("active");
 
         sut.filteredItems.should.have.length(1);
         sut.filteredItems[0].title.should.equal("foo")
       });
 
       it('should hide active todo items from the list', () => {
-        sut.filter = "completed";
+        sut.updateFilteredItems("completed");
 
         sut.filteredItems.should.have.length(1);
         sut.filteredItems[0].title.should.equal("bar")
       });
 
       it('should not hide any todo item if filter is invalid', () => {
-        sut.filter = "not-supported";
+        sut.updateFilteredItems("not-supported");
 
         sut.filteredItems.should.have.length(2);
       });

@@ -3,13 +3,13 @@ import _ from 'underscore';
 
 export class Todos {
   constructor() {
-    this.filter = undefined;
     this.items = [];
+    this.filteredItems = [];
     this.newTodoTitle = null;
   }
 
   activate(params) {
-    this.filter = params.filter;
+    this.updateFilteredItems(params.filter);
   }
 
   addNewTodo(title = this.newTodoTitle) {
@@ -35,12 +35,17 @@ export class Todos {
     return _(this.items).filter(i => !i.isChecked).length;
   }
 
-  get filteredItems() {
-    switch(this.filter) {
-      case 'active':    return _(this.items).filter(i => !i.isChecked);
-      case 'completed': return _(this.items).filter(i =>  i.isChecked);
+  updateFilteredItems(filter) {
+    switch(filter) {
+      case 'active':
+        this.filteredItems = _(this.items).filter(i => !i.isChecked);
+        break;
+      case 'completed':
+        this.filteredItems = _(this.items).filter(i =>  i.isChecked);
+        break;
+      default:
+        this.filteredItems = this.items;
+        break;
     }
-
-    return this.items;
   }
 }
