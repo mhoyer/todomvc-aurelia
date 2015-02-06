@@ -1,43 +1,37 @@
 'use strict';
 
-var system = require('../../jspm_packages/system.src.js');
-             require('../../config.js');
+import {App} from 'src/app';
 
-var sinon = require('sinon');
-var chai = require('chai')
-  , expect = chai.expect
-  , should = chai.should();
+var expect = chai.expect;
+var should = chai.should();
 
-describe('App', function(){
+describe('App', () => {
   var sut;
   var fakeRouter = { configure: sinon.spy() };
 
-  beforeEach(function(done) {
-    system.import('src/app').then(function(module) {
-      sut = new module.App(fakeRouter);
-      done();
-    });
+  beforeEach(() => {
+    sut = new App(fakeRouter);
   });
 
-  describe('when creating a new instance', function() {
-    it('should simply do', function() {
+  describe('when creating a new instance', () => {
+    it('should simply do', () => {
       sut.should.not.be.null();
     });
 
-    it('should call router configuration', function() {
+    it('should call router configuration', () => {
       fakeRouter.configure.calledWith(sut.configureRoutes).should.be.true();
     });
   });
 
-  describe('when configuring the router', function() {
+  describe('when configuring the router', () => {
     var config = { map: sinon.spy() };
 
-    it('should set the title', function() {
+    it('should set the title', () => {
       sut.configureRoutes(config);
       config.title.should.equal("TodoMVC");
     });
 
-    it('should set up the default route', function() {
+    it('should set up the default route', () => {
       sut.configureRoutes(config);
 
       var maps = config.map.lastCall.args[0];

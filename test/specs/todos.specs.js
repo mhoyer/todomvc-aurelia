@@ -1,161 +1,156 @@
 'use strict';
 
-var system = require('../../jspm_packages/system.src.js');
-             require('../../config.js');
+import {Todos} from 'src/todos';
 
-var chai = require('chai')
-  , expect = chai.expect
-  , should = chai.should();
+var expect = chai.expect;
+var should = chai.should();
 
-describe('Todos', function(){
+describe('Todos', () =>{
   var sut;
 
-  beforeEach(function(done) {
-    system.import('src/todos').then(function(module) {
-      sut = new module.Todos();
-      done();
-    });
+  beforeEach(() => {
+    sut = new Todos();
   });
 
-  describe('when creating a new instance', function() {
-    it('should not have a filter set', function() {
+  describe('when creating a new instance', () => {
+    it('should not have a filter set', () => {
       expect(sut.filter).to.be.undefined();
     });
 
-    it('should init empty list of todo items', function() {
+    it('should init empty list of todo items', () => {
       sut.items.should.be.empty();
     });
 
-    it('should init new todo field with empty value', function() {
+    it('should init new todo field with empty value', () => {
       expect(sut.newTodoTitle).to.be.null();
     });
 
-    it('should not have any item left to be done', function() {
+    it('should not have any item left to be done', () => {
       sut.countTodosLeft.should.be.equal(0);
     });
 
-    it('should not filter any item', function() {
+    it('should not filter any item', () => {
       sut.filteredItems.should.be.equal(sut.items);
     });
   });
 
-  describe('when activating the todo view model', function() {
-    it('should set the filter', function() {
+  describe('when activating the todo view model', () => {
+    it('should set the filter', () => {
       sut.activate({ filter: 'active' });
       expect(sut.filter).to.be.equal('active');
     });
 
-    it('should reset the filter if non is passed in', function() {
+    it('should reset the filter if non is passed in', () => {
       sut.activate({});
       expect(sut.filter).to.be.undefined();
     });
   });
 
-  describe('when adding a new todo', function() {
-    it('should add it to the list of todo items', function() {
+  describe('when adding a new todo', () => {
+    it('should add it to the list of todo items', () => {
       sut.addNewTodo("foo");
       sut.items[0].title.should.equal("foo");
     });
 
-    it('should trim the title', function() {
+    it('should trim the title', () => {
       sut.addNewTodo("    foo     ");
       sut.items[0].title.should.equal("foo");
     });
 
-    it('should not add the item if title is empty', function() {
+    it('should not add the item if title is empty', () => {
       sut.addNewTodo("");
       sut.items.length.should.be.equal(0);
     });
 
-    it('should not add the item if title only has whitespaces', function() {
+    it('should not add the item if title only has whitespaces', () => {
       sut.addNewTodo("   ");
       sut.items.length.should.be.equal(0);
     });
 
-    it('should add current newTodo value if nothing passed into function', function() {
+    it('should add current newTodo value if nothing passed into function', () => {
       sut.newTodoTitle = "foo";
       sut.addNewTodo();
       sut.items[0].title.should.equal("foo");
     });
 
-    it('should reset new todo field back to empty', function() {
+    it('should reset new todo field back to empty', () => {
       sut.newTodoTitle = "foo";
       sut.addNewTodo("foo");
       expect(sut.newTodoTitle).to.be.null();
     });
 
-    it('should increase count of items left', function() {
+    it('should increase count of items left', () => {
       sut.newTodoTitle = "foo";
       sut.addNewTodo("foo");
       sut.countTodosLeft.should.be.equal(1);
     });
   });
 
-  describe('when deleting a todo', function() {
+  describe('when deleting a todo', () => {
     var fakeTodo = new Object();
 
-    beforeEach(function() {
+    beforeEach(() => {
       sut.items.push(fakeTodo);
     });
 
-    it('should remove it from the list of todo items', function() {
+    it('should remove it from the list of todo items', () => {
       sut.deleteTodo(fakeTodo);
       sut.items.should.be.empty();
     });
 
-    it('should be fail safe when trying to remove not existing item from the list of todo items', function() {
+    it('should be fail safe when trying to remove not existing item from the list of todo items', () => {
       sut.deleteTodo(new Object());
       sut.items.should.contain(fakeTodo);
     });
 
-    it('should decrease count of items left', function() {
+    it('should decrease count of items left', () => {
       sut.deleteTodo(fakeTodo);
       sut.countTodosLeft.should.be.equal(0);
     });
   });
 
-  describe('with two items given', function() {
-    beforeEach(function() {
+  describe('with two items given', () => {
+    beforeEach(() => {
       sut.addNewTodo("foo");
       sut.addNewTodo("bar");
       sut.items[1].isChecked = true;
     });
 
-    describe('when counting incompleted todos', function() {
-      it('should calculate the total of items left for doing', function() {
+    describe('when counting incompleted todos', () => {
+      it('should calculate the total of items left for doing', () => {
         sut.countTodosLeft.should.be.equal(1);
       });
 
-      it('should restore count of items left for doing when unchecking', function() {
+      it('should restore count of items left for doing when unchecking', () => {
         sut.items[1].isChecked = false;
         sut.countTodosLeft.should.be.equal(2);
       });
     });
 
-    describe('when filtering the list of todo items', function() {
-      it('should hide completed todo items from the list', function() {
+    describe('when filtering the list of todo items', () => {
+      it('should hide completed todo items from the list', () => {
         sut.filter = "active";
 
         sut.filteredItems.should.have.length(1);
         sut.filteredItems[0].title.should.equal("foo")
       });
 
-      it('should hide active todo items from the list', function() {
+      it('should hide active todo items from the list', () => {
         sut.filter = "completed";
 
         sut.filteredItems.should.have.length(1);
         sut.filteredItems[0].title.should.equal("bar")
       });
 
-      it('should not hide any todo item if filter is invalid', function() {
+      it('should not hide any todo item if filter is invalid', () => {
         sut.filter = "not-supported";
 
         sut.filteredItems.should.have.length(2);
       });
     });
 
-    describe('when clearing the list of completed todo items', function() {
-      it('should delete the completed todo items only', function() {
+    describe('when clearing the list of completed todo items', () => {
+      it('should delete the completed todo items only', () => {
         sut.clearCompletedTodos();
 
         sut.items.should.have.length(1);

@@ -1,18 +1,15 @@
 'use strict';
 
-var system = require('../../../jspm_packages/system.src.js');
-             require('../../../config.js');
+import {Focus} from 'src/behaviors/focus';
 
-var sinon = require('sinon');
-var chai = require('chai')
-  , expect = chai.expect
-  , should = chai.should();
+var expect = chai.expect;
+var should = chai.should();
 
-describe('Focus behavior', function(){
+describe('Focus behavior', () => {
   var sut;
 
-  describe('when creating a new instance', function() {
-    it.skip('should simply do', function(done) {
+  describe('when creating a new instance', () => {
+    it.skip('should simply do', () => {
       // following lines will break due to import of 'aurelia-templating' (and testing under node I guess):
       //
       // Potentially unhandled rejection [2] ReferenceError: Error loading "github:aurelia/templating@0.8.8" at file:~/jspm_packages/github/aurelia/templating@0.8.8.js
@@ -28,12 +25,11 @@ describe('Focus behavior', function(){
       // at ensureEvaluated (~\jspm_packages\system.src.js:706:11)
       // at ensureEvaluated (~\jspm_packages\system.src.js:706:11)
       // at Object.execute (~\jspm_packages\system.src.js:844:11)
-      system.import('src/behaviors/focus').then(function(module) {
-        sut = new module.App(fakeRouter);
-        sut.should.not.be.null();
-        done();
-      });
+
+      var fakeElement = {};
+
+      sut = new Focus(fakeElement);
+      sut.should.not.be.null();
     });
   });
-
 });

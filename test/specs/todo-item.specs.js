@@ -1,61 +1,55 @@
 'use strict';
 
-var system = require('../../jspm_packages/system.src.js');
+import {TodoItem} from 'src/todo-item';
 
-var chai = require('chai')
-  , expect = chai.expect
-  , should = chai.should();
+var expect = chai.expect;
+var should = chai.should();
 
-describe('TodoItem', function(){
-  var TodoItem;
+describe('TodoItem', () => {
   var sut;
 
-  beforeEach(function(done) {
-    system.import('src/todo-item').then(function(module) {
-      TodoItem = module.TodoItem;
-      sut = new TodoItem("foo");
-      done();
-    });
+  beforeEach(() => {
+    sut = new TodoItem("foo");
   });
 
-  describe('when creating a new instance', function() {
-    it('should not mark the item as done', function() {
+  describe('when creating a new instance', () => {
+    it('should not mark the item as done', () => {
       sut.isChecked.should.be.false();
     });
 
-    it('should set given title', function() {
+    it('should set given title', () => {
       sut.title.should.equal("foo");
     });
 
-    it('should trim given title', function() {
+    it('should trim given title', () => {
       sut = new TodoItem("   foo   ");
       sut.title.should.equal("foo");
     });
 
-    it('should not activate the edit mode', function() {
+    it('should not activate the edit mode', () => {
       sut.isEditing.should.be.false();
     });
   });
 
-  describe('when double clicking an item', function() {
-    it('should not set the edit mode when clicked only once', function() {
+  describe('when double clicking an item', () => {
+    it('should not set the edit mode when clicked only once', () => {
       sut.labelClicked();
       sut.isEditing.should.be.false();
     });
 
     // uuuh, not the best way to test time related stuff?
-    it('should activate the edit mode when double clicked within e.g. 50ms', function(done) {
+    it('should activate the edit mode when double clicked within e.g. 50ms', (done) => {
       sut.labelClicked();
-      setTimeout(function() {
+      setTimeout(() => {
         sut.labelClicked();
         sut.isEditing.should.be.true();
         done();
       }, 10);
     });
 
-    it('should not activate the edit mode when double clicked two slow > 350ms', function(done) {
+    it('should not activate the edit mode when double clicked two slow > 350ms', (done) => {
       sut.labelClicked();
-      setTimeout(function() {
+      setTimeout(() => {
         sut.labelClicked();
         sut.isEditing.should.be.false();
         done();
@@ -64,8 +58,8 @@ describe('TodoItem', function(){
 
   });
 
-  describe('when finishing edit mode', function() {
-    it('should deactivate edit mode', function() {
+  describe('when finishing edit mode', () => {
+    it('should deactivate edit mode', () => {
       sut.isEditing = true;
       sut.finishEditing();
       sut.isEditing.should.be.false();
