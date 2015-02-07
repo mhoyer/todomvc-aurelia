@@ -35,13 +35,13 @@
     <!-- Remove this if you don't implement routing -->
     <ul id="filters">
       <li>
-        <a class="selected" href="#!/">All</a>
+        <a class="${filter == '!' ? 'selected' : ''}" href="#!/">All</a>
       </li>
       <li>
-        <a href="#/active">Active</a>
+        <a class="${filter == 'active' ? 'selected' : ''}" href="#/active">Active</a>
       </li>
       <li>
-        <a href="#/completed">Completed</a>
+        <a class="${filter == 'completed' ? 'selected' : ''}" href="#/completed">Completed</a>
       </li>
     </ul>
     <!-- Hidden if no completed items are left ↓ -->

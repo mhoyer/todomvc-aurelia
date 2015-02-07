@@ -5,6 +5,7 @@ export class Todos {
   constructor() {
     this.items = [];
     this.filteredItems = [];
+    this.filter = '';
     this.newTodoTitle = null;
   }
 
@@ -36,6 +37,8 @@ export class Todos {
   }
 
   updateFilteredItems(filter) {
+    this.filter = filter;
+
     switch(filter) {
       case 'active':
         this.filteredItems = _(this.items).filter(i => !i.isChecked);

@@ -25,6 +25,10 @@ describe('Todos', () =>{
       sut.countTodosLeft.should.be.equal(0);
     });
 
+    it('should set empty filter (all)', () => {
+      sut.filter.should.be.empty();
+    });
+
     it('should not filter any item', () => {
       sut.filteredItems.should.be.empty();
     });
@@ -132,6 +136,12 @@ describe('Todos', () =>{
     });
 
     describe('when filtering the list of todo items', () => {
+      it('should set the current filter', () => {
+        sut.updateFilteredItems("active");
+
+        sut.filter.should.equal("active")
+      });
+
       it('should hide completed todo items from the list', () => {
         sut.updateFilteredItems("active");
 
