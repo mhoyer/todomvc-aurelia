@@ -26,6 +26,7 @@ export class Todos {
 
   deleteTodo(todoItem) {
     this.items = _(this.items).without(todoItem);
+    this.updateFilteredItems(this.filter);
   }
 
   clearCompletedTodos() {

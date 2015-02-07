@@ -115,6 +115,16 @@ describe('Todos', () =>{
       sut.deleteTodo(fakeTodo);
       sut.countTodosLeft.should.be.equal(0);
     });
+
+    it('should update the filtered list of todo items', () => {
+      sut.updateFilteredItems = sinon.spy();
+      sut.filter = 'active';
+
+      sut.deleteTodo(fakeTodo);
+
+      assert(sut.updateFilteredItems.calledOnce);
+      assert(sut.updateFilteredItems.calledWith('active'));
+    });
   });
 
   describe('with two items given', () => {
