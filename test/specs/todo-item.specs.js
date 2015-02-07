@@ -1,9 +1,5 @@
 'use strict';
-
 import {TodoItem} from 'src/todo-item';
-
-var expect = chai.expect;
-var should = chai.should();
 
 describe('TodoItem', () => {
   var sut;

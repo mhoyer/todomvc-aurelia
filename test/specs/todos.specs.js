@@ -1,9 +1,5 @@
 'use strict';
-
 import {Todos} from 'src/todos';
-
-var expect = chai.expect;
-var should = chai.should();
 
 describe('Todos', () =>{
   var sut;
@@ -40,8 +36,8 @@ describe('Todos', () =>{
 
       sut.activate({ filter: 'active' });
 
-      assert(sut.updateFilteredItems.calledOnce);
-      assert(sut.updateFilteredItems.calledWith('active'));
+      sut.updateFilteredItems.should.have.been.calledOnce;
+      sut.updateFilteredItems.should.have.been.calledWith('active');
     });
 
     it('should reset the filtered items if non is passed in', () => {
@@ -49,8 +45,8 @@ describe('Todos', () =>{
 
       sut.activate({});
 
-      assert(sut.updateFilteredItems.calledOnce);
-      assert(sut.updateFilteredItems.calledWith(undefined));
+      sut.updateFilteredItems.should.have.been.calledOnce;
+      sut.updateFilteredItems.should.have.been.calledWith(undefined);
     });
   });
 
@@ -99,8 +95,8 @@ describe('Todos', () =>{
 
       sut.addNewTodo("foo");
 
-      assert(sut.updateFilteredItems.calledOnce);
-      assert(sut.updateFilteredItems.calledWith('active'));
+      sut.updateFilteredItems.should.have.been.calledOnce;
+      sut.updateFilteredItems.should.have.been.calledWith('active');
     });
   });
 
@@ -132,8 +128,8 @@ describe('Todos', () =>{
 
       sut.deleteTodo(fakeTodo);
 
-      assert(sut.updateFilteredItems.calledOnce);
-      assert(sut.updateFilteredItems.calledWith('active'));
+      sut.updateFilteredItems.should.have.been.calledOnce;
+      sut.updateFilteredItems.should.have.been.calledWith('active');
     });
   });
 
@@ -152,7 +148,8 @@ describe('Todos', () =>{
         sut.items[0].isChecked = true;
 
         setTimeout(() => {
-          assert(sut.updateFilteredItems.calledWith('active'));
+          // sut.updateFilteredItems.should.have.been.calledOnce; << not sure why it's called twice
+          sut.updateFilteredItems.should.have.been.calledWith('active');
           done();
         }, 10);
       });
@@ -211,8 +208,8 @@ describe('Todos', () =>{
 
         sut.clearCompletedTodos();
 
-        assert(sut.updateFilteredItems.calledOnce);
-        assert(sut.updateFilteredItems.calledWith('active'));
+        sut.updateFilteredItems.should.have.been.calledOnce;
+        sut.updateFilteredItems.should.have.been.calledWith('active');
       });
     });
   });

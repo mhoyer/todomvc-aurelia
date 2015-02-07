@@ -1,9 +1,5 @@
 'use strict';
-
 import {Focus} from 'src/behaviors/focus';
-
-var expect = chai.expect;
-var should = chai.should();
 
 describe('Focus behavior', () => {
   var sut;

@@ -1,9 +1,5 @@
 'use strict';
-
 import {App} from 'src/app';
-
-var expect = chai.expect;
-var should = chai.should();
 
 describe('App', () => {
   var sut;
@@ -19,7 +15,7 @@ describe('App', () => {
     });
 
     it('should call router configuration', () => {
-      fakeRouter.configure.calledWith(sut.configureRoutes).should.be.true();
+      fakeRouter.configure.should.have.been.calledWith(sut.configureRoutes);
     });
   });
 
