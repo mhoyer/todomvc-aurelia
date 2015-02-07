@@ -22,6 +22,7 @@ export class Todos {
     var newTodoItem = new TodoItem(title);
     this.items.push(newTodoItem);
     this.newTodoTitle = null;
+    this.updateFilteredItems(this.filter);
   }
 
   deleteTodo(todoItem) {

@@ -92,6 +92,16 @@ describe('Todos', () =>{
       sut.addNewTodo("foo");
       sut.countTodosLeft.should.be.equal(1);
     });
+
+    it('should update the filtered list of todo items', () => {
+      sut.updateFilteredItems = sinon.spy();
+      sut.filter = 'active';
+
+      sut.addNewTodo("foo");
+
+      assert(sut.updateFilteredItems.calledOnce);
+      assert(sut.updateFilteredItems.calledWith('active'));
+    });
   });
 
   describe('when deleting a todo', () => {
