@@ -7,6 +7,7 @@ export class Todos {
     this.filteredItems = [];
     this.filter = '';
     this.newTodoTitle = null;
+    this._areAllChecked = false;
   }
 
   activate(params) {
@@ -32,7 +33,9 @@ export class Todos {
     this.updateFilteredItems(this.filter);
   }
 
+  get areAllChecked() { return this._areAllChecked; }
   set areAllChecked(checkedState) {
+    this._areAllChecked = checkedState;
     _.each(this.items, i => i.isChecked = checkedState);
     this.updateFilteredItems(this.filter);
   }
