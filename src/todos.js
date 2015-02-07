@@ -32,6 +32,11 @@ export class Todos {
     this.updateFilteredItems(this.filter);
   }
 
+  set areAllChecked(checkedState) {
+    _.each(this.items, i => i.isChecked = checkedState);
+    this.updateFilteredItems(this.filter);
+  }
+
   clearCompletedTodos() {
     this.items = _(this.items).filter(i => !i.isChecked);
     this.updateFilteredItems(this.filter);

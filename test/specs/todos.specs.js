@@ -140,6 +140,30 @@ describe('Todos', () =>{
       sut.items[1].isChecked = true;
     });
 
+    describe('when changing checked state for all todo items', () => {
+      it('should support checking all todo items', () => {
+        sut.areAllChecked = true;
+
+        sut.items[0].isChecked.should.be.true();
+        sut.items[1].isChecked.should.be.true();
+      });
+
+      it('should support unchecking all todo items', () => {
+        sut.areAllChecked = false;
+
+        sut.items[0].isChecked.should.be.false();
+        sut.items[1].isChecked.should.be.false();
+      });
+
+      it('should update the filtered list of todo items', () => {
+        sut.updateFilteredItems = sinon.spy();
+
+        sut.areAllChecked = true;
+
+        sut.updateFilteredItems.should.have.been.called;
+      });
+    });
+
     describe('when checking a todo item', () => {
       it('should update the filtered list of todo items', (done) => {
         sut.filter = 'active';
