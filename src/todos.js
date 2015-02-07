@@ -21,10 +21,14 @@ export class Todos {
     if (title.length == 0) return;
 
     var newTodoItem = new TodoItem(title);
-    Object.observe(newTodoItem, () => this.updateFilteredItems(this.filter));
+    Object.observe(newTodoItem, () => this.onItemChanged());
 
     this.items.push(newTodoItem);
     this.newTodoTitle = null;
+    this.updateFilteredItems(this.filter);
+  }
+
+  onItemChanged() {
     this.updateFilteredItems(this.filter);
   }
 
