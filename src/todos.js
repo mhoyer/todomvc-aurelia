@@ -7,7 +7,7 @@ export class Todos {
     this.filteredItems = [];
     this.filter = '';
     this.newTodoTitle = null;
-    this._areAllChecked = false;
+    this.areAllChecked = false;
   }
 
   activate(params) {
@@ -29,7 +29,7 @@ export class Todos {
   }
 
   onItemChanged() {
-    this._areAllChecked = false;
+    this.areAllChecked = _(this.items).all(i => i.isChecked);
     this.updateFilteredItems(this.filter);
   }
 
@@ -38,16 +38,14 @@ export class Todos {
     this.updateFilteredItems(this.filter);
   }
 
-  get areAllChecked() { return this._areAllChecked; }
-  set areAllChecked(checkedState) {
-    this._areAllChecked = checkedState;
-    _.each(this.items, i => i.isChecked = checkedState);
+  areAllCheckedChanged() {
+    _.each(this.items, i => i.isChecked = this.areAllChecked);
     this.updateFilteredItems(this.filter);
   }
 
   clearCompletedTodos() {
     this.items = _(this.items).filter(i => !i.isChecked);
-    this._areAllChecked = false;
+    this.areAllChecked = false;
     this.updateFilteredItems(this.filter);
   }
 

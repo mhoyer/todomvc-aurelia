@@ -143,6 +143,7 @@ describe('Todos', () =>{
     describe('when changing checked state for all todo items', () => {
       it('should check all todo items', () => {
         sut.areAllChecked = true;
+        sut.areAllCheckedChanged();
 
         sut.items[0].isChecked.should.be.true();
         sut.items[1].isChecked.should.be.true();
@@ -150,6 +151,7 @@ describe('Todos', () =>{
 
       it('should uncheck all todo items', () => {
         sut.areAllChecked = false;
+        sut.areAllCheckedChanged();
 
         sut.items[0].isChecked.should.be.false();
         sut.items[1].isChecked.should.be.false();
@@ -159,12 +161,14 @@ describe('Todos', () =>{
         sut.updateFilteredItems = sinon.spy();
 
         sut.areAllChecked = true;
+        sut.areAllCheckedChanged();
 
         sut.updateFilteredItems.should.have.been.called;
       });
 
       it('should set current are-all-checked state', () => {
         sut.areAllChecked = true;
+        sut.areAllCheckedChanged();
 
         sut.areAllChecked.should.be.true();
       });
@@ -184,13 +188,37 @@ describe('Todos', () =>{
         }, 10);
       });
 
-      it('should reset current are-all-checked state', (done) => {
+      it('should reset are-all-checked state', (done) => {
         sut.areAllChecked = true;
 
         sut.items[0].isChecked = false;
 
         setTimeout(() => {
           sut.areAllChecked.should.be.false();
+          done();
+        }, 10);
+      });
+
+      it('should activate are-all-checked state if all todo items were checked manually', (done) => {
+        sut.areAllChecked = false;
+
+        sut.items[0].isChecked = true;
+        sut.items[1].isChecked = true;
+
+        setTimeout(() => {
+          sut.areAllChecked.should.be.true();
+          done();
+        }, 10);
+      });
+
+      it('should not uncheck all items when unchecking one item after all were checked', (done) => {
+        sut.areAllChecked = true;
+
+        sut.items[0].isChecked = false;
+
+        setTimeout(() => {
+          sut.items[0].isChecked.should.be.false();
+          sut.items[1].isChecked.should.be.true(); // still
           done();
         }, 10);
       });
