@@ -241,6 +241,14 @@ describe('Todos', () =>{
         sut.updateFilteredItems.should.have.been.calledOnce;
         sut.updateFilteredItems.should.have.been.calledWith('active');
       });
+
+      it('should reset current are-all-checked state', () => {
+        sut.areAllChecked = true;
+
+        sut.clearCompletedTodos();
+
+        sut.areAllChecked.should.be.false();
+      });
     });
   });
 
