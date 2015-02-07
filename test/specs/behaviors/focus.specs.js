@@ -3,29 +3,32 @@ import {Focus} from 'src/behaviors/focus';
 
 describe('Focus behavior', () => {
   var sut;
+  var fakeElement = {};
+
+  beforeEach(() => {
+    sut = new Focus(fakeElement);
+  });
 
   describe('when creating a new instance', () => {
-    it.skip('should simply do', () => {
-      // following lines will break due to import of 'aurelia-templating' (and testing under node I guess):
-      //
-      // Potentially unhandled rejection [2] ReferenceError: Error loading "github:aurelia/templating@0.8.8" at file:~/jspm_packages/github/aurelia/templating@0.8.8.js
-      // Error loading "github:aurelia/templating@0.8.8" from "src/behaviors/focus" at file:~/src/behaviors/focus.js
-      //   window is not defined
-      // at execute (evalmachine.<anonymous>:36:33)
-      // at ensureEvaluated (~\jspm_packages\system.src.js:714:26)
-      // at ensureEvaluated (~\jspm_packages\system.src.js:706:11)
-      // at ensureEvaluated (~\jspm_packages\system.src.js:706:11)
-      // at ensureEvaluated (~\jspm_packages\system.src.js:706:11)
-      // at ensureEvaluated (~\jspm_packages\system.src.js:706:11)
-      // at ensureEvaluated (~\jspm_packages\system.src.js:706:11)
-      // at ensureEvaluated (~\jspm_packages\system.src.js:706:11)
-      // at ensureEvaluated (~\jspm_packages\system.src.js:706:11)
-      // at Object.execute (~\jspm_packages\system.src.js:844:11)
-
-      var fakeElement = {};
-
-      sut = new Focus(fakeElement);
+    it('should simply do', () => {
       sut.should.not.be.null();
+      sut.element.should.be.equal(fakeElement);
+    });
+  });
+
+  describe('when the bound value changes', () => {
+    beforeEach(() => {
+      fakeElement.focus = sinon.spy();
+    });
+
+    it('should trigger focus on element if value is true', () => {
+      sut.valueChanged(true);
+      fakeElement.focus.should.have.been.calledOnce;
+    });
+
+    it('should not trigger focus on element if value is false', () => {
+      sut.valueChanged(false);
+      fakeElement.focus.should.not.have.been.called;
     });
   });
 });
