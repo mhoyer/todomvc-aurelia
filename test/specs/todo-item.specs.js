@@ -55,7 +55,6 @@ describe('TodoItem', () => {
         done();
       }, 360);
     });
-
   });
 
   describe('when finishing edit mode', () => {
