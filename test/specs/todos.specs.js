@@ -144,6 +144,20 @@ describe('Todos', () =>{
       sut.items[1].isChecked = true;
     });
 
+    describe('when checking a todo item', () => {
+      it('should update the filtered list of todo items', (done) => {
+        sut.filter = 'active';
+        sut.updateFilteredItems = sinon.spy();
+
+        sut.items[0].isChecked = true;
+
+        setTimeout(() => {
+          assert(sut.updateFilteredItems.calledWith('active'));
+          done();
+        }, 10);
+      });
+    });
+
     describe('when counting incompleted todos', () => {
       it('should calculate the total of items left for doing', () => {
         sut.countTodosLeft.should.be.equal(1);
