@@ -44,7 +44,6 @@
         <a class="${filter == 'completed' ? 'selected' : ''}" href="#/completed">Completed</a>
       </li>
     </ul>
-    <!-- Hidden if no completed items are left ↓ -->
-    <button id="clear-completed" click.delegate="clearCompletedTodos()"></button>
+    <button id="clear-completed" click.delegate="clearCompletedTodos()" show.bind="countTodosLeft < items.length"></button>
   </footer>
 </template>
