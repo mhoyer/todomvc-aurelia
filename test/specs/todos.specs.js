@@ -180,6 +180,16 @@ describe('Todos', () =>{
         sut.items.should.have.length(1);
         sut.items[0].title.should.equal("foo")
       });
+
+      it('should update the filtered list of todo items', () => {
+        sut.updateFilteredItems = sinon.spy();
+        sut.filter = 'active';
+
+        sut.clearCompletedTodos();
+
+        assert(sut.updateFilteredItems.calledOnce);
+        assert(sut.updateFilteredItems.calledWith('active'));
+      });
     });
   });
 
