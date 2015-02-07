@@ -183,6 +183,17 @@ describe('Todos', () =>{
           done();
         }, 10);
       });
+
+      it('should reset current are-all-checked state', (done) => {
+        sut.areAllChecked = true;
+
+        sut.items[0].isChecked = false;
+
+        setTimeout(() => {
+          sut.areAllChecked.should.be.false();
+          done();
+        }, 10);
+      });
     });
 
     describe('when counting incompleted todos', () => {

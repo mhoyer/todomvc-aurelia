@@ -29,6 +29,7 @@ export class Todos {
   }
 
   onItemChanged() {
+    this._areAllChecked = false;
     this.updateFilteredItems(this.filter);
   }
 
