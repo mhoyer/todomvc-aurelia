@@ -12,7 +12,7 @@ export class App {
   configureRoutes(cfg) {
     cfg.title = "TodoMVC";
     cfg.map([
-      { route: ['', ':filter'],   moduleId: 'todos' }
+      { route: ['', ':filter'], moduleId: 'todos' }
     ]);
   }
 }
