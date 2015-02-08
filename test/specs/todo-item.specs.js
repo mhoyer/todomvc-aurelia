@@ -125,6 +125,16 @@ describe('TodoItem', () => {
 
         sut.title.should.be.equal("foo");
       });
+
+      it('should set edit title back to actual title when pressing ESC', () => {
+        // required due to blur listener that triggers finisheEditing()
+        sut.title = "foo";
+        sut.editTitle = "bar";
+
+        sut.onKeyUp({keyCode: 27});
+
+        sut.editTitle.should.be.equal("foo");
+      });
     });
   });
 });

@@ -28,6 +28,7 @@ export class TodoItem {
 
   onKeyUp(ev) {
     if(ev.keyCode == ESC_KEY) {
+      this.editTitle = this.title;
       this.isEditing = false;
     }
   }
