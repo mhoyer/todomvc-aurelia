@@ -11,7 +11,10 @@ export class TodoItem {
     var now = Date.now();
     var duration = now - this.lastLabelClick;
 
-    if (duration < 350) this.isEditing = true;
+    if (duration < 350) {
+      this.editTitle = this.title;
+      this.isEditing = true;
+    }
 
     this.lastLabelClick = Date.now();
   }

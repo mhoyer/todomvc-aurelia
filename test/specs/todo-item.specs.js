@@ -47,6 +47,16 @@ describe('TodoItem', () => {
       }, 10);
     });
 
+    it('should update edit title with current todo title', () => {
+      sut.editTitle = "";
+      sut.title = "foo";
+
+      sut.labelClicked();
+      sut.labelClicked();
+
+      sut.editTitle.should.be.equal("foo");
+    });
+
     it('should not activate the edit mode when double clicked two slow > 350ms', (done) => {
       sut.labelClicked();
       setTimeout(() => {
