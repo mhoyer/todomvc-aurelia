@@ -98,5 +98,33 @@ describe('TodoItem', () => {
       });
     });
 
+    describe('when pressing a key', () => {
+      it('should not finish editing mode when usual letter key pressed', () => {
+        sut.finishEditing = sinon.spy();
+
+        sut.onKeyUp({keyCode: 65});
+
+        sut.finishEditing.should.not.have.been.called;
+        sut.isEditing.should.be.true();
+      });
+
+      it('should finish editing mode when ESC pressed', () => {
+        sut.finishEditing = sinon.spy();
+
+        sut.onKeyUp({keyCode: 27});
+
+        sut.finishEditing.should.not.have.been.called;
+        sut.isEditing.should.be.false();
+      });
+
+      it('should not update title when ESC pressed', () => {
+        sut.title = "foo";
+        sut.editTitle = "bar";
+
+        sut.onKeyUp({keyCode: 27});
+
+        sut.title.should.be.equal("foo");
+      });
+    });
   });
 });

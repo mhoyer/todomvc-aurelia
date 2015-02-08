@@ -1,3 +1,5 @@
+var ESC_KEY = 27;
+
 export class TodoItem {
   constructor(title) {
     this.isCompleted = false;
@@ -22,5 +24,11 @@ export class TodoItem {
   finishEditing() {
     this.title = this.editTitle.trim();
     this.isEditing = false;
+  }
+
+  onKeyUp(ev) {
+    if(ev.keyCode == ESC_KEY) {
+      this.isEditing = false;
+    }
   }
 }
