@@ -25,6 +25,10 @@ describe('TodoItem', () => {
     it('should not activate the edit mode', () => {
       sut.isEditing.should.be.false();
     });
+
+    it('should have unset edit title', () => {
+      expect(sut.editTitle).to.be.null();
+    });
   });
 
   describe('when double clicking an item', () => {

@@ -4,6 +4,7 @@ export class TodoItem {
     this.isEditing = false;
     this.lastLabelClick = 0;
     this.title = title.trim();
+    this.editTitle = null;
   }
 
   labelClicked() {
