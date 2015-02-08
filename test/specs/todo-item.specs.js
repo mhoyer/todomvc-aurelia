@@ -69,14 +69,26 @@ describe('TodoItem', () => {
 
   describe('when finishing edit mode', () => {
     it('should deactivate edit mode', () => {
+      sut.editTitle = "foo";
       sut.isEditing = true;
+
       sut.finishEditing();
+
       sut.isEditing.should.be.false();
     });
 
-    it('should trim modified title', () => {
+    it('should update actual title with edit title', () => {
+      sut.editTitle = "foo";
       sut.isEditing = true;
-      sut.title = "   foo   ";
+
+      sut.finishEditing();
+
+      sut.title.should.be.equal("foo");
+    });
+
+    it('should trim modified title', () => {
+      sut.editTitle = "   foo   ";
+      sut.isEditing = true;
 
       sut.finishEditing();
 

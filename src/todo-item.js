@@ -20,7 +20,7 @@ export class TodoItem {
   }
 
   finishEditing() {
-    this.title = this.title.trim();
+    this.title = this.editTitle.trim();
     this.isEditing = false;
   }
 }
