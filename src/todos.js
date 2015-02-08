@@ -26,6 +26,7 @@ export class Todos {
     this.items.push(newTodoItem);
     this.newTodoTitle = null;
     this.updateFilteredItems(this.filter);
+    this.save();
   }
 
   onItemChanged(ev) {
@@ -72,5 +73,8 @@ export class Todos {
         this.filteredItems = this.items;
         break;
     }
+  }
+
+  save() {
   }
 }

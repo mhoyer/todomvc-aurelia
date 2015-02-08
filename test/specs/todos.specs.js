@@ -98,6 +98,14 @@ describe('Todos', () =>{
       sut.updateFilteredItems.should.have.been.calledOnce;
       sut.updateFilteredItems.should.have.been.calledWith('active');
     });
+
+    it('should save the list of todo items', () => {
+      sut.save = sinon.spy();
+
+      sut.addNewTodo("foo");
+
+      sut.save.should.have.been.calledOnce;
+    });
   });
 
   describe('when deleting a todo item', () => {
