@@ -1,6 +1,6 @@
 export class TodoItem {
   constructor(title) {
-    this.isChecked = false;
+    this.isCompleted = false;
     this.isEditing = false;
     this.lastLabelClick = 0;
     this.title = title.trim();

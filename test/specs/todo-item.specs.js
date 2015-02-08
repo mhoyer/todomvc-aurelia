@@ -10,7 +10,7 @@ describe('TodoItem', () => {
 
   describe('when creating a new instance', () => {
     it('should not mark the item as done', () => {
-      sut.isChecked.should.be.false();
+      sut.isCompleted.should.be.false();
     });
 
     it('should set given title', () => {

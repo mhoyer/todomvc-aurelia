@@ -137,7 +137,7 @@ describe('Todos', () =>{
     beforeEach(() => {
       sut.addNewTodo("foo");
       sut.addNewTodo("bar");
-      sut.items[1].isChecked = true;
+      sut.items[1].isCompleted = true;
     });
 
     describe('when changing checked state for all todo items', () => {
@@ -145,16 +145,16 @@ describe('Todos', () =>{
         sut.areAllChecked = true;
         sut.areAllCheckedChanged();
 
-        sut.items[0].isChecked.should.be.true();
-        sut.items[1].isChecked.should.be.true();
+        sut.items[0].isCompleted.should.be.true();
+        sut.items[1].isCompleted.should.be.true();
       });
 
       it('should uncheck all todo items', () => {
         sut.areAllChecked = false;
         sut.areAllCheckedChanged();
 
-        sut.items[0].isChecked.should.be.false();
-        sut.items[1].isChecked.should.be.false();
+        sut.items[0].isCompleted.should.be.false();
+        sut.items[1].isCompleted.should.be.false();
       });
 
       it('should update the filtered list of todo items', () => {
@@ -203,7 +203,7 @@ describe('Todos', () =>{
         sut.filter = 'active';
         sut.updateFilteredItems = sinon.spy();
 
-        sut.items[0].isChecked = true;
+        sut.items[0].isCompleted = true;
 
         setTimeout(() => {
           // sut.updateFilteredItems.should.have.been.calledOnce; << not sure why it's called twice
@@ -215,7 +215,7 @@ describe('Todos', () =>{
       it('should reset are-all-checked state', (done) => {
         sut.areAllChecked = true;
 
-        sut.items[0].isChecked = false;
+        sut.items[0].isCompleted = false;
 
         setTimeout(() => {
           sut.areAllChecked.should.be.false();
@@ -226,8 +226,8 @@ describe('Todos', () =>{
       it('should activate are-all-checked state if all todo items were checked manually', (done) => {
         sut.areAllChecked = false;
 
-        sut.items[0].isChecked = true;
-        sut.items[1].isChecked = true;
+        sut.items[0].isCompleted = true;
+        sut.items[1].isCompleted = true;
 
         setTimeout(() => {
           sut.areAllChecked.should.be.true();
@@ -238,11 +238,11 @@ describe('Todos', () =>{
       it('should not uncheck all items when unchecking one item after all were checked', (done) => {
         sut.areAllChecked = true;
 
-        sut.items[0].isChecked = false;
+        sut.items[0].isCompleted = false;
 
         setTimeout(() => {
-          sut.items[0].isChecked.should.be.false();
-          sut.items[1].isChecked.should.be.true(); // still
+          sut.items[0].isCompleted.should.be.false();
+          sut.items[1].isCompleted.should.be.true(); // still
           done();
         }, 10);
       });
@@ -254,7 +254,7 @@ describe('Todos', () =>{
       });
 
       it('should restore count of items left for doing when unchecking', () => {
-        sut.items[1].isChecked = false;
+        sut.items[1].isCompleted = false;
         sut.countTodosLeft.should.be.equal(2);
       });
     });

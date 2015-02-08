@@ -12,14 +12,16 @@
     <input id="toggle-all" type="checkbox" checked.bind="areAllChecked" change.delegate="areAllCheckedChanged()">
     <label for="toggle-all">Mark all as complete</label>
     <ul id="todo-list">
-      <li repeat.for="todoItem of filteredItems" class="${todoItem.isChecked ? 'completed' : ''} ${todoItem.isEditing ? 'editing' : ''}">
+      <li repeat.for="todoItem of filteredItems" class="${todoItem.isCompleted ? 'completed' : ''} ${todoItem.isEditing ? 'editing' : ''}">
         <div class="view">
-          <input class="toggle" type="checkbox" checked.bind="todoItem.isChecked">
+          <input class="toggle" type="checkbox" checked.bind="todoItem.isCompleted">
           <label click.delegate="todoItem.labelClicked()">${todoItem.title}</label>
           <button click.delegate="$parent.deleteTodo(todoItem)" class="destroy"></button>
         </div>
         <form role="form" submit.delegate="todoItem.finishEditing()">
-          <input class="edit" value.bind="todoItem.title" blur.delegate="todoItem.finishEditing()" focus.bind="todoItem.isEditing">
+          <input class="edit" value.bind="todoItem.title" 
+                 blur.delegate="todoItem.finishEditing()"
+                 focus.bind="todoItem.isEditing">
         </form>
       </li>
     </ul>

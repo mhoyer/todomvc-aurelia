@@ -34,7 +34,7 @@ export class Todos {
       this.deleteTodo(todoItem);
     }
 
-    this.areAllChecked = _(this.items).all(i => i.isChecked);
+    this.areAllChecked = _(this.items).all(i => i.isCompleted);
     this.updateFilteredItems(this.filter);
   }
 
@@ -44,18 +44,18 @@ export class Todos {
   }
 
   areAllCheckedChanged() {
-    _.each(this.items, i => i.isChecked = this.areAllChecked);
+    _.each(this.items, i => i.isCompleted = this.areAllChecked);
     this.updateFilteredItems(this.filter);
   }
 
   clearCompletedTodos() {
-    this.items = _(this.items).filter(i => !i.isChecked);
+    this.items = _(this.items).filter(i => !i.isCompleted);
     this.areAllChecked = false;
     this.updateFilteredItems(this.filter);
   }
 
   get countTodosLeft() {
-    return _(this.items).filter(i => !i.isChecked).length;
+    return _(this.items).filter(i => !i.isCompleted).length;
   }
 
   updateFilteredItems(filter) {
@@ -63,10 +63,10 @@ export class Todos {
 
     switch(filter) {
       case 'active':
-        this.filteredItems = _(this.items).filter(i => !i.isChecked);
+        this.filteredItems = _(this.items).filter(i => !i.isCompleted);
         break;
       case 'completed':
-        this.filteredItems = _(this.items).filter(i =>  i.isChecked);
+        this.filteredItems = _(this.items).filter(i =>  i.isCompleted);
         break;
       default:
         this.filteredItems = this.items;
