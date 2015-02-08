@@ -19,7 +19,7 @@
           <button click.delegate="$parent.deleteTodo(todoItem)" class="destroy"></button>
         </div>
         <form role="form" submit.delegate="todoItem.finishEditing()">
-          <input class="edit" value.bind="todoItem.title" 
+          <input class="edit" value.bind="todoItem.editTitle"
                  blur.delegate="todoItem.finishEditing()"
                  focus.bind="todoItem.isEditing">
         </form>
