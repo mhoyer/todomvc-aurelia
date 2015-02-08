@@ -29,7 +29,9 @@
   </section>
 
   <footer id="footer" show.bind="items.length">
-    <span id="todo-count"><strong>${countTodosLeft}</strong> item left</span>
+    <span id="todo-count">
+      <strong>${countTodosLeft}</strong>
+      ${countTodosLeft == 1 ? 'item' : 'items'} left</span>
     <ul id="filters">
       <li>
         <a class="${filter == '!' ? 'selected' : ''}" href="#!/">All</a>
