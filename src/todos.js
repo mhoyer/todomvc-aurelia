@@ -37,6 +37,7 @@ export class Todos {
 
     this.areAllChecked = _(this.items).all(i => i.isCompleted);
     this.updateFilteredItems(this.filter);
+    this.save();
   }
 
   deleteTodo(todoItem) {

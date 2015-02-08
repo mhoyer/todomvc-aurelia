@@ -206,7 +206,7 @@ describe('Todos', () =>{
       });
     });
 
-    describe('when checking a todo item', () => {
+    describe('when setting a todo item to completed state', () => {
       it('should update the filtered list of todo items', (done) => {
         sut.filter = 'active';
         sut.updateFilteredItems = sinon.spy();
@@ -253,6 +253,16 @@ describe('Todos', () =>{
           sut.items[1].isCompleted.should.be.true(); // still
           done();
         }, 10);
+      });
+    });
+
+    describe('when anything changes on a todo item instance', () => {
+      it('should save the list of todo items', () => {
+        sut.save = sinon.spy();
+
+        sut.onItemChanged([{object:sut.items[0]}]);
+
+        sut.save.should.have.been.calledOnce;
       });
     });
 
