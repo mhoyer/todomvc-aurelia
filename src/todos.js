@@ -21,14 +21,19 @@ export class Todos {
     if (title.length == 0) return;
 
     var newTodoItem = new TodoItem(title);
-    Object.observe(newTodoItem, () => this.onItemChanged());
+    Object.observe(newTodoItem, (ev) => this.onItemChanged(ev));
 
     this.items.push(newTodoItem);
     this.newTodoTitle = null;
     this.updateFilteredItems(this.filter);
   }
 
-  onItemChanged() {
+  onItemChanged(ev) {
+    var todoItem = ev[0].object;
+    if (todoItem.title == '') {
+      this.deleteTodo(todoItem);
+    }
+
     this.areAllChecked = _(this.items).all(i => i.isChecked);
     this.updateFilteredItems(this.filter);
   }

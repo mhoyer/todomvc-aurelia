@@ -100,7 +100,7 @@ describe('Todos', () =>{
     });
   });
 
-  describe('when deleting a todo', () => {
+  describe('when deleting a todo item', () => {
     var fakeTodo = new Object();
 
     beforeEach(() => {
@@ -171,6 +171,30 @@ describe('Todos', () =>{
         sut.areAllCheckedChanged();
 
         sut.areAllChecked.should.be.true();
+      });
+    });
+
+    describe('when editing a todo item', () => {
+      it('should delete it if title set empty', (done) => {
+        sut.deleteTodo = sinon.spy();
+
+        sut.items[0].title = '';
+
+        setTimeout(() => {
+          sut.deleteTodo.should.have.been.calledWith(sut.items[0]);
+          done();
+        }, 10);
+      });
+
+      it('should not delete it if title got valid content', (done) => {
+        sut.deleteTodo = sinon.spy();
+
+        sut.items[0].title = 'baz';
+
+        setTimeout(() => {
+          sut.deleteTodo.should.not.have.been.called;
+          done();
+        }, 10);
       });
     });
 
