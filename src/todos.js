@@ -55,6 +55,7 @@ export class Todos {
     this.items = _(this.items).filter(i => !i.isCompleted);
     this.areAllChecked = false;
     this.updateFilteredItems(this.filter);
+    this.save();
   }
 
   get countTodosLeft() {

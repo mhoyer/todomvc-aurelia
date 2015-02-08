@@ -338,6 +338,14 @@ describe('Todos', () =>{
 
         sut.areAllChecked.should.be.false();
       });
+
+      it('should save the list of todo items', () => {
+        sut.save = sinon.spy();
+
+        sut.clearCompletedTodos();
+
+        sut.save.should.have.been.calledOnce;
+      });
     });
   });
 
