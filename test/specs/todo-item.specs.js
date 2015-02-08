@@ -59,6 +59,15 @@ describe('TodoItem', () => {
       sut.finishEditing();
       sut.isEditing.should.be.false();
     });
+
+    it('should trim modified title', () => {
+      sut.isEditing = true;
+      sut.title = "   foo   ";
+
+      sut.finishEditing();
+
+      sut.title.should.be.equal("foo");
+    });
   });
 
 });
