@@ -67,33 +67,36 @@ describe('TodoItem', () => {
     });
   });
 
-  describe('when finishing edit mode', () => {
-    it('should deactivate edit mode', () => {
-      sut.editTitle = "foo";
+  describe('while editing', () => {
+    beforeEach(() => {
       sut.isEditing = true;
-
-      sut.finishEditing();
-
-      sut.isEditing.should.be.false();
     });
 
-    it('should update actual title with edit title', () => {
-      sut.editTitle = "foo";
-      sut.isEditing = true;
+    describe('when finishing edit mode', () => {
+      it('should deactivate edit mode', () => {
+        sut.editTitle = "foo";
 
-      sut.finishEditing();
+        sut.finishEditing();
 
-      sut.title.should.be.equal("foo");
+        sut.isEditing.should.be.false();
+      });
+
+      it('should update actual title with edit title', () => {
+        sut.editTitle = "foo";
+
+        sut.finishEditing();
+
+        sut.title.should.be.equal("foo");
+      });
+
+      it('should trim modified title', () => {
+        sut.editTitle = "   foo   ";
+
+        sut.finishEditing();
+
+        sut.title.should.be.equal("foo");
+      });
     });
 
-    it('should trim modified title', () => {
-      sut.editTitle = "   foo   ";
-      sut.isEditing = true;
-
-      sut.finishEditing();
-
-      sut.title.should.be.equal("foo");
-    });
   });
-
 });
