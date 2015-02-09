@@ -86,8 +86,6 @@ export class Todos {
     var storageContent = localStorage.getItem(STORAGE_NAME);
     if (storageContent == undefined) return;
 
-      console.log(storageContent);
-
     var simpleItems = JSON.parse(storageContent);
     this.items = _.map(simpleItems, item => {
       var todoItem = new TodoItem(item.title);
