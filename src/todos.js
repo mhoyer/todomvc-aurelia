@@ -80,6 +80,23 @@ export class Todos {
     }
   }
 
+  load() {
+    var storageContent = localStorage.getItem(STORAGE_NAME);
+    if (storageContent == undefined) return;
+
+      console.log(storageContent);
+
+    var simpleItems = JSON.parse(storageContent);
+    this.items = _.map(simpleItems, item => {
+      var todoItem = new TodoItem(item.title);
+      todoItem.isCompleted = item.completed;
+
+      Object.observe(todoItem, (ev) => this.onItemChanged(ev));
+
+      return todoItem;
+    });
+  }
+
   save() {
     var simpleItems = _.map(this.items, item => { return {
       title : item.title,
