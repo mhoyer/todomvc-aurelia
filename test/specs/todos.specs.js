@@ -30,6 +30,16 @@ describe('Todos', () =>{
       sut.filteredItems.should.be.empty();
     });
 
+    it('should load the items from local storage', () => {
+      // we should actually test for .load() gets called. But not easy when the ctor does the call.
+      var getItem = sinon.stub(window.localStorage, "getItem").returns(null);
+
+      new Todos();
+
+      getItem.should.have.been.calledWith('todomvc-aurelia');
+      getItem.restore();
+    });
+
   });
 
   describe('when loading todos from local storage', () => {

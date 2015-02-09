@@ -10,6 +10,8 @@ export class Todos {
     this.filter = '';
     this.newTodoTitle = null;
     this.areAllChecked = false;
+
+    this.load();
   }
 
   activate(params) {
