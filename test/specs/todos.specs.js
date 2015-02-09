@@ -5,6 +5,7 @@ describe('Todos', () =>{
   var sut;
 
   beforeEach(() => {
+    window.localStorage.clear();
     sut = new Todos();
   });
 
@@ -389,7 +390,7 @@ describe('Todos', () =>{
 
     describe('when saving the list of todo items', () => {
       it('should write a simplified list to local storage', () => {
-        var setItem = sinon.spy(localStorage, "setItem");
+        var setItem = sinon.spy(window.localStorage, "setItem");
 
         sut.save();
 
