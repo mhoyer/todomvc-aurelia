@@ -48,7 +48,7 @@ Run tests and HTTP-server:
 ### Todos (I know...)
 
 - <s>merging in the original styles from TodoMVC</s>
-- missing local storage support
+- <s>missing local storage support</s>
 
 ## Credit
 
