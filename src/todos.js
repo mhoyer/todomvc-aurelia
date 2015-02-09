@@ -1,6 +1,8 @@
 import {TodoItem} from './todo-item';
 import _ from 'underscore';
 
+var STORAGE_NAME = 'todomvc-aurelia';
+
 export class Todos {
   constructor() {
     this.items = [];
@@ -79,5 +81,11 @@ export class Todos {
   }
 
   save() {
+    var simpleItems = _.map(this.items, item => { return {
+      title : item.title,
+      completed : item.isCompleted
+    }});
+
+    localStorage.setItem(STORAGE_NAME, JSON.stringify(simpleItems));
   }
 }

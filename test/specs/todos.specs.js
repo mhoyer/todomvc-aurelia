@@ -347,6 +347,19 @@ describe('Todos', () =>{
         sut.save.should.have.been.calledOnce;
       });
     });
+
+    describe('when saving the list of todo items', () => {
+      it('should write a simplified list to local storage', () => {
+        var setItem = sinon.spy(localStorage, "setItem");
+
+        sut.save();
+
+        setItem.should.have.been.calledWith('todomvc-aurelia',
+          '[{"title":"foo","completed":false},' +
+           '{"title":"bar","completed":true}]');
+        setItem.restore();
+      });
+    });
   });
 
 });
