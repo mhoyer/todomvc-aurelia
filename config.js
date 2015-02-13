@@ -10,10 +10,16 @@ System.config({
 System.config({
   "map": {
     "aurelia-bootstrapper": "github:aurelia/bootstrapper@0.9.3",
+    "aurelia-event-aggregator": "github:aurelia/event-aggregator@0.2.2",
     "aurelia-framework": "github:aurelia/framework@0.8.6",
+    "aurelia-history-browser": "github:aurelia/history-browser@0.2.3",
     "aurelia-http-client": "github:aurelia/http-client@0.4.4",
+    "aurelia-logging-console": "github:aurelia/logging-console@0.2.2",
     "aurelia-router": "github:aurelia/router@0.5.5",
     "aurelia-templating": "github:aurelia/templating@0.8.10",
+    "aurelia-templating-binding": "github:aurelia/templating-binding@0.8.4",
+    "aurelia-templating-resources": "github:aurelia/templating-resources@0.8.7",
+    "aurelia-templating-router": "github:aurelia/templating-router@0.9.2",
     "bootstrap": "github:twbs/bootstrap@3.3.2",
     "font-awesome": "npm:font-awesome@4.3.0",
     "todomvc-app-css": "npm:todomvc-app-css@1.0.1",
