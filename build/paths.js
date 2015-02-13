@@ -5,6 +5,7 @@ module.exports = {
   html:'src/**/*.html',
   style:'styles/**/*.css',
   output:'dist/',
+  export:'export/',
   doc:'./doc',
   specsSrc: 'test/spec/**/*.js',
   e2eSpecsSrc: 'test/e2e/src/*.js',

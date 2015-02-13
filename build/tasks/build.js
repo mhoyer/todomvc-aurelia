@@ -3,6 +3,7 @@ var runSequence = require('run-sequence');
 var changed = require('gulp-changed');
 var plumber = require('gulp-plumber');
 var to5 = require('gulp-6to5');
+var shell = require('gulp-shell');
 var sourcemaps = require('gulp-sourcemaps');
 var paths = require('../paths');
 var compilerOptions = require('../6to5-options');
@@ -24,10 +25,17 @@ gulp.task('build-html', function () {
     .pipe(gulp.dest(paths.output));
 });
 
+gulp.task('build-bundle', ['build-system'], shell.task('jspm bundle ' +
+  paths.output + 'main ' +
+  paths.output + 'bundled.js ' +
+  ' --inject --skip-source-maps')
+);
+
 gulp.task('build', function(callback) {
   return runSequence(
     'clean',
     ['build-system', 'build-html'],
+    'build-bundle',
     callback
   );
 });
