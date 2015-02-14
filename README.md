@@ -29,6 +29,7 @@ Run tests and HTTP-server:
 
 ## Resources
 
+- [Aurelia • TodoMVC](https://github.com/mhoyer/todomvc-aurelia) original sources
 - [Website](http://aurelia.io/)
 - [Documentation](http://aurelia.io/docs.html)
 - [Blog](http://blog.durandal.io/)
