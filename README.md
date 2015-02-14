@@ -29,15 +29,16 @@ Run tests and HTTP-server:
 
 ## Resources
 
-- [Aurelia • TodoMVC](https://github.com/mhoyer/todomvc-aurelia) original sources
-- [Website](http://aurelia.io/)
-- [Documentation](http://aurelia.io/docs.html)
-- [Blog](http://blog.durandal.io/)
+- [Aurelia TodoMVC source](https://github.com/mhoyer/todomvc-aurelia)
+- [TodoMVC](https://github.com/tastejs/todomvc) home of all TodoMVC apps
+- [Aurelia Website](http://aurelia.io/)
+- [Aurelia Documentation](http://aurelia.io/docs.html)
+- [Durandal Blog](http://blog.durandal.io/)
 
 ### Support
 
-- [Twitter](http://twitter.com/pixelplastic)
-- [Gitter](https://gitter.im/Aurelia/Discuss)
+- [Twitter @pixelplastic](http://twitter.com/pixelplastic)
+- [Gitter Aurelia/Discuss](https://gitter.im/Aurelia/Discuss)
 
 *Let us [know](https://github.com/tastejs/todomvc/issues) if you discover anything worth sharing.*
 
