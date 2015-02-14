@@ -68,7 +68,9 @@
       "aurelia-templating-resources": "^0.8.7",
       "aurelia-templating-router": "^0.9.2",
       "bootstrap": "^3.3.1",
+      "core-js": "npm:core-js@0.4.10",
       "font-awesome": "^4.2.0",
+      "nodelibs-process": "github:jspm/nodelibs-process@^0.1.1",
       "todomvc-app-css": "npm:todomvc-app-css@^1.0.1",
       "underscore": "^1.7.0"
     }

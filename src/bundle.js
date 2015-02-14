@@ -1,3 +1,6 @@
+// Core
+import 'core-js';
+
 // Aurelia framework
 import 'aurelia-bootstrapper';
 import 'aurelia-templating-binding';
