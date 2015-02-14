@@ -19,6 +19,10 @@ Install jspm and npm packages:
     npm install
     jspm install
 
+Simply build, test, bundle, export:
+
+    gulp
+
 Run tests and HTTP-server:
 
     gulp watch
@@ -41,14 +45,16 @@ Run tests and HTTP-server:
 - following the getting started tutorial: http://aurelia.io/get-started.html
 - attempt to go TDD where possible
 
+### Changelog
+
+#### 0.1.0
+
+- finished functional implementation to fulfill [TodoMVC Application Specification](https://github.com/tastejs/todomvc/blob/master/app-spec.md)
+- includes bundling (jspm) and exporting (for easy sync with [todomvc/examples/aurelia](https://github.com/tastejs/todomvc/tree/master/examples/aurelia))
+
 ### Open Questions While Developing
 
 - See [Issues](https://github.com/mhoyer/todomvc-aurelia/issues/)
-
-### Todos (I know...)
-
-- <s>merging in the original styles from TodoMVC</s>
-- <s>missing local storage support</s>
 
 ## Credit
 
