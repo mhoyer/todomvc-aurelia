@@ -31,11 +31,27 @@ gulp.task('build-bundle', ['build-system'], shell.task('jspm bundle ' +
   ' --inject --skip-source-maps')
 );
 
+gulp.task('build-export', function() {
+  var sources = [
+    'index.html',
+    'config.js',
+    'css/*',
+    'jspm_packages/*',
+    'jspm_packages/npm/todomvc-app-css@*/index.css',
+    paths.output + '*.html',
+    paths.output + 'bundled.js'
+  ];
+
+  return gulp.src(sources, {base: "."})
+    .pipe(gulp.dest(paths.export));
+});
+
 gulp.task('build', function(callback) {
   return runSequence(
     'clean',
     ['build-system', 'build-html'],
     'build-bundle',
+    'build-export',
     callback
   );
 });
