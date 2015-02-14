@@ -33,6 +33,7 @@ gulp.task('build-bundle', ['build-system'], shell.task('jspm bundle ' +
 
 gulp.task('build-export', function() {
   var sources = [
+    'README.md',
     'index.html',
     'config.js',
     'css/*',
