@@ -90,7 +90,7 @@ describe('Todos', () =>{
       sut.updateFilteredItems.should.have.been.calledWith('active');
     });
 
-    it('should reset the filtered items if non is passed in', () => {
+    it('should reset the filtered items if nothing is passed in', () => {
       sut.updateFilteredItems = sinon.spy();
 
       sut.activate({});
@@ -340,6 +340,12 @@ describe('Todos', () =>{
         sut.updateFilteredItems("active");
 
         sut.filter.should.equal("active")
+      });
+
+      it('should set the filter to ! if passed in argument is undefined', () => {
+        sut.updateFilteredItems(undefined);
+
+        sut.filter.should.equal("!")
       });
 
       it('should hide completed todo items from the list', () => {

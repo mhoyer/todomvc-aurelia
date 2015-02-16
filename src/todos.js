@@ -67,7 +67,7 @@ export class Todos {
   }
 
   updateFilteredItems(filter) {
-    this.filter = filter;
+    this.filter = filter || '!';
 
     switch(filter) {
       case 'active':
