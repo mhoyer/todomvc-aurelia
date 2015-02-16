@@ -39,6 +39,7 @@ gulp.task('build-export', function() {
     'css/*',
     'jspm_packages/*',
     'jspm_packages/npm/todomvc-app-css@*/index.css',
+    'jspm_packages/npm/todomvc-common@*/base.*',
     paths.output + '*.html',
     paths.output + 'bundled.js'
   ];
