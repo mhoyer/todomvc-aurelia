@@ -44,15 +44,15 @@ Run tests and HTTP-server:
 
 ## Implementation
 
-- following the getting started tutorial: http://aurelia.io/get-started.html
-- attempt to go TDD where possible
+- Following the getting started tutorial: http://aurelia.io/get-started.html
+- Attempt to go TDD where possible
 
 ### Changelog
 
 #### 0.1.0
 
-- finished functional implementation to fulfill [TodoMVC Application Specification](https://github.com/tastejs/todomvc/blob/master/app-spec.md)
-- includes bundling (jspm) and exporting (for easy sync with [todomvc/examples/aurelia](https://github.com/tastejs/todomvc/tree/master/examples/aurelia))
+- Finished functional implementation to fulfill [TodoMVC Application Specification](https://github.com/tastejs/todomvc/blob/master/app-spec.md)
+- Includes bundling (jspm) and exporting (for easy sync with [todomvc/examples/aurelia](https://github.com/tastejs/todomvc/tree/master/examples/aurelia))
 
 ### Open Questions While Developing
 

@@ -152,6 +152,7 @@ System.config({
     "font-awesome": "npm:font-awesome@4.3.0",
     "nodelibs-process": "github:jspm/nodelibs-process@0.1.1",
     "todomvc-app-css": "npm:todomvc-app-css@1.0.1",
+    "todomvc-common": "npm:todomvc-common@1.0.1",
     "underscore": "npm:underscore@1.7.0",
     "github:aurelia/binding@0.3.4": {
       "aurelia-dependency-injection": "github:aurelia/dependency-injection@0.4.2",
