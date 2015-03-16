@@ -264,6 +264,19 @@ describe('Todos', () =>{
           done();
         }, 10);
       });
+
+      it('should not update filtered list of todo items on label double click', (done) => {
+        sut.filter = 'active';
+        sut.updateFilteredItems = sinon.spy();
+
+        sut.items[0].labelClicked();
+        sut.items[0].labelClicked();
+
+        setTimeout(() => {
+          sut.updateFilteredItems.should.not.have.been.calledOnce;
+          done();
+        }, 20);
+      });
     });
 
     describe('when setting a todo item to completed state', () => {
