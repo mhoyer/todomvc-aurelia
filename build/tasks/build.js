@@ -38,6 +38,7 @@ gulp.task('build-export', function() {
     'config.js',
     'css/*',
     'jspm_packages/*',
+    '!jspm_packages/*.src.js',
     'jspm_packages/npm/todomvc-app-css@*/index.css',
     'jspm_packages/npm/todomvc-common@*/base.*',
     paths.output + '*.html',

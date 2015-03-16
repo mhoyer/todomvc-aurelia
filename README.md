@@ -49,6 +49,14 @@ Run tests and HTTP-server:
 
 ### Changelog
 
+#### 0.1.1
+
+- Prepared all assets (README, learn.json, index.html, etc) to fulfill the [Contribution Docs](https://github.com/tastejs/todomvc/blob/master/contributing.md)
+- Cleaned up obsolete files (```*.src.js```, empty ```css/app.css```
+- Fixed #6
+- Fixed #7
+- Fixed #9
+
 #### 0.1.0
 
 - Finished functional implementation to fulfill [TodoMVC Application Specification](https://github.com/tastejs/todomvc/blob/master/app-spec.md)

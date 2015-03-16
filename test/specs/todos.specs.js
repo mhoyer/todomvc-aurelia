@@ -200,10 +200,12 @@ describe('Todos', () =>{
   });
 
   describe('with two items given', () => {
-    beforeEach(() => {
+    beforeEach((done) => {
       sut.addNewTodo("foo");
       sut.addNewTodo("bar");
       sut.items[1].isCompleted = true;
+
+      setTimeout(done, 10);
     });
 
     describe('when changing checked state for all todo items', () => {
@@ -262,6 +264,19 @@ describe('Todos', () =>{
           done();
         }, 10);
       });
+
+      it('should not update filtered list of todo items on label double click', (done) => {
+        sut.filter = 'active';
+        sut.updateFilteredItems = sinon.spy();
+
+        sut.items[0].labelClicked();
+        sut.items[0].labelClicked();
+
+        setTimeout(() => {
+          sut.updateFilteredItems.should.not.have.been.calledOnce;
+          done();
+        }, 20);
+      });
     });
 
     describe('when setting a todo item to completed state', () => {
@@ -272,8 +287,7 @@ describe('Todos', () =>{
         sut.items[0].isCompleted = true;
 
         setTimeout(() => {
-          // sut.updateFilteredItems.should.have.been.calledOnce; << not sure why it's called twice
-          sut.updateFilteredItems.should.have.been.calledWith('active');
+          sut.updateFilteredItems.should.have.been.calledOnce;
           done();
         }, 10);
       });
@@ -281,7 +295,7 @@ describe('Todos', () =>{
       it('should reset are-all-checked state', (done) => {
         sut.areAllChecked = true;
 
-        sut.items[0].isCompleted = false;
+        sut.items[1].isCompleted = false;
 
         setTimeout(() => {
           sut.areAllChecked.should.be.false();
