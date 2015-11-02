@@ -8,7 +8,7 @@
   <link rel="stylesheet" type="text/css" href="jspm_packages/npm/todomvc-app-css@1.0.1/index.css">
 </head>
 <body>
-  <section id="todoapp" aurelia-app>
+  <section id="todoapp" aurelia-app="main">
     <!-- this is where Aurelia will fill out the content -->
   </section>
 
@@ -23,7 +23,6 @@
   <script src="jspm_packages/system.js"></script>
   <script src="config.js"></script>
   <script>
-    System.baseUrl = 'dist';
     System.import('aurelia-bootstrapper');
   </script>
 </body>

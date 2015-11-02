@@ -1,18 +1,8 @@
-import './bundle'
-
-import {LogManager} from 'aurelia-framework';
-import {ConsoleAppender} from 'aurelia-logging-console';
-import {bootstrap} from 'aurelia-bootstrapper';
-
-LogManager.addAppender(new ConsoleAppender());
-LogManager.setLevel(LogManager.levels.debug);
-
-bootstrap(aurelia => {
+export function configure(aurelia) {
+  console.log(aurelia);
   aurelia.use
-    .defaultBindingLanguage()
-    .defaultResources()
-    .router()
-    .eventAggregator();
+    .standardConfiguration()
+    .developmentLogging();
 
-  aurelia.start().then(a => a.setRoot('dist/app', document.body));
-});
+  aurelia.start().then(a => a.setRoot());
+}
