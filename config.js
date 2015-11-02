@@ -38,7 +38,7 @@ System.config({
     "aurelia-templating-router": "github:aurelia/templating-router@0.17.0",
     "babel": "npm:babel-core@5.8.33",
     "babel-runtime": "npm:babel-runtime@5.8.29",
-    "core-js": "npm:core-js@1.2.4",
+    "core-js": "npm:core-js@0.9.18",
     "css": "github:systemjs/plugin-css@0.1.10",
     "fetch": "github:github/fetch@0.9.0",
     "nodelibs-process": "github:jspm/nodelibs-process@0.1.2",
@@ -256,12 +256,6 @@ System.config({
     },
     "npm:core-js@0.9.18": {
       "fs": "github:jspm/nodelibs-fs@0.1.2",
-      "process": "github:jspm/nodelibs-process@0.1.2",
-      "systemjs-json": "github:systemjs/plugin-json@0.1.0"
-    },
-    "npm:core-js@1.2.4": {
-      "fs": "github:jspm/nodelibs-fs@0.1.2",
-      "path": "github:jspm/nodelibs-path@0.1.0",
       "process": "github:jspm/nodelibs-process@0.1.2",
       "systemjs-json": "github:systemjs/plugin-json@0.1.0"
     },
