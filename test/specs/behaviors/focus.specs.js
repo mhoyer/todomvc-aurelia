@@ -11,7 +11,7 @@ describe('Focus behavior', () => {
 
   describe('when creating a new instance', () => {
     it('should simply do', () => {
-      sut.should.not.be.null();
+      sut.should.not.be.null;
       sut.element.should.be.equal(fakeElement);
     });
   });

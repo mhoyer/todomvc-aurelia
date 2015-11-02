@@ -3,19 +3,24 @@ import {Todos} from 'src/todos';
 
 describe('Todos', () =>{
   var sut;
+  var fakeStorage;
 
   beforeEach(() => {
-    window.localStorage.clear();
-    sut = new Todos();
+    fakeStorage = {
+      getItem: sinon.stub(),
+      setItem: sinon.stub()
+    };
+
+    sut = new Todos(fakeStorage);
   });
 
   describe('when creating a new instance', () => {
     it('should init empty list of todo items', () => {
-      sut.items.should.be.empty();
+      sut.items.should.be.empty;
     });
 
     it('should init new todo field with empty value', () => {
-      expect(sut.newTodoTitle).to.be.null();
+      expect(sut.newTodoTitle).to.be.null;
     });
 
     it('should not have any item left to be done', () => {
@@ -23,60 +28,49 @@ describe('Todos', () =>{
     });
 
     it('should set empty filter (all)', () => {
-      sut.filter.should.be.empty();
+      sut.filter.should.be.empty;
     });
 
     it('should not filter any item', () => {
-      sut.filteredItems.should.be.empty();
+      sut.filteredItems.should.be.empty;
     });
 
     it('should load the items from local storage', () => {
       // we should actually test for .load() gets called. But not easy when the ctor does the call.
-      var getItem = sinon.stub(window.localStorage, "getItem").returns(null);
+      fakeStorage.getItem.reset();
 
-      new Todos();
+      new Todos(fakeStorage);
 
-      getItem.should.have.been.calledWith('todomvc-aurelia');
-      getItem.restore();
+      fakeStorage.getItem.should.have.been.calledOnce;
+      fakeStorage.getItem.should.have.been.calledWith('todomvc-aurelia');
     });
-
   });
 
   describe('when loading todos from local storage', () => {
-    var getItem;
-
-    afterEach(() => {
-      getItem.restore();
-    });
-
     it('should use correct key', () => {
-      getItem = sinon.stub(window.localStorage, "getItem").returns(null);
-
       sut.load();
 
-      getItem.should.have.been.calledWith('todomvc-aurelia');
+      fakeStorage.getItem.should.have.been.calledWith('todomvc-aurelia');
     });
 
     it('should set empty list of todo items if nothing was saved before', () => {
-      getItem = sinon.stub(window.localStorage, "getItem").returns(null);
-
       sut.load();
 
-      sut.items.should.be.empty();
+      sut.items.should.be.empty;
     });
 
     it('should fill list of todo items from persisted simplified list', () => {
-      getItem = sinon.stub(window.localStorage, "getItem")
+      fakeStorage.getItem
         .returns('[{"title":"foo","completed":false},' +
-                '{"title":"bar","completed":true}]');
+                  '{"title":"bar","completed":true}]');
 
       sut.load();
 
       sut.items.should.have.length(2);
       sut.items[0].title.should.be.equal('foo');
-      sut.items[0].isCompleted.should.be.false();
+      sut.items[0].isCompleted.should.be.false;
       sut.items[1].title.should.be.equal('bar');
-      sut.items[1].isCompleted.should.be.true();
+      sut.items[1].isCompleted.should.be.true;
     });
   });
 
@@ -130,7 +124,7 @@ describe('Todos', () =>{
     it('should reset new todo field back to empty', () => {
       sut.newTodoTitle = "foo";
       sut.addNewTodo("foo");
-      expect(sut.newTodoTitle).to.be.null();
+      expect(sut.newTodoTitle).to.be.null;
     });
 
     it('should increase count of items left', () => {
@@ -167,7 +161,7 @@ describe('Todos', () =>{
 
     it('should remove it from the list of todo items', () => {
       sut.deleteTodo(fakeTodo);
-      sut.items.should.be.empty();
+      sut.items.should.be.empty;
     });
 
     it('should be fail safe when trying to remove not existing item from the list of todo items', () => {
@@ -213,16 +207,16 @@ describe('Todos', () =>{
         sut.areAllChecked = true;
         sut.areAllCheckedChanged();
 
-        sut.items[0].isCompleted.should.be.true();
-        sut.items[1].isCompleted.should.be.true();
+        sut.items[0].isCompleted.should.be.true;
+        sut.items[1].isCompleted.should.be.true;
       });
 
       it('should uncheck all todo items', () => {
         sut.areAllChecked = false;
         sut.areAllCheckedChanged();
 
-        sut.items[0].isCompleted.should.be.false();
-        sut.items[1].isCompleted.should.be.false();
+        sut.items[0].isCompleted.should.be.false;
+        sut.items[1].isCompleted.should.be.false;
       });
 
       it('should update the filtered list of todo items', () => {
@@ -238,7 +232,7 @@ describe('Todos', () =>{
         sut.areAllChecked = true;
         sut.areAllCheckedChanged();
 
-        sut.areAllChecked.should.be.true();
+        sut.areAllChecked.should.be.true;
       });
     });
 
@@ -298,7 +292,7 @@ describe('Todos', () =>{
         sut.items[1].isCompleted = false;
 
         setTimeout(() => {
-          sut.areAllChecked.should.be.false();
+          sut.areAllChecked.should.be.false;
           done();
         }, 10);
       });
@@ -310,7 +304,7 @@ describe('Todos', () =>{
         sut.items[1].isCompleted = true;
 
         setTimeout(() => {
-          sut.areAllChecked.should.be.true();
+          sut.areAllChecked.should.be.true;
           done();
         }, 10);
       });
@@ -321,8 +315,8 @@ describe('Todos', () =>{
         sut.items[0].isCompleted = false;
 
         setTimeout(() => {
-          sut.items[0].isCompleted.should.be.false();
-          sut.items[1].isCompleted.should.be.true(); // still
+          sut.items[0].isCompleted.should.be.false;
+          sut.items[1].isCompleted.should.be.true; // still
           done();
         }, 10);
       });
@@ -406,7 +400,7 @@ describe('Todos', () =>{
 
         sut.clearCompletedTodos();
 
-        sut.areAllChecked.should.be.false();
+        sut.areAllChecked.should.be.false;
       });
 
       it('should save the list of todo items', () => {
@@ -420,14 +414,11 @@ describe('Todos', () =>{
 
     describe('when saving the list of todo items', () => {
       it('should write a simplified list to local storage', () => {
-        var setItem = sinon.spy(window.localStorage, "setItem");
-
         sut.save();
 
-        setItem.should.have.been.calledWith('todomvc-aurelia',
+        fakeStorage.setItem.should.have.been.calledWith('todomvc-aurelia',
           '[{"title":"foo","completed":false},' +
            '{"title":"bar","completed":true}]');
-        setItem.restore();
       });
     });
   });

@@ -4,13 +4,14 @@ import _ from 'underscore';
 var STORAGE_NAME = 'todomvc-aurelia';
 
 export class Todos {
-  constructor() {
+  constructor(storage = null) {
     this.items = [];
     this.filteredItems = [];
     this.filter = '';
     this.newTodoTitle = null;
     this.areAllChecked = false;
 
+    this.storage = storage || localStorage;
     this.load();
   }
 
@@ -87,7 +88,7 @@ export class Todos {
   }
 
   load() {
-    var storageContent = localStorage.getItem(STORAGE_NAME);
+    var storageContent = this.storage.getItem(STORAGE_NAME);
     if (storageContent == undefined) return;
 
     var simpleItems = JSON.parse(storageContent);
@@ -107,6 +108,6 @@ export class Todos {
       completed : item.isCompleted
     }});
 
-    localStorage.setItem(STORAGE_NAME, JSON.stringify(simpleItems));
+    this.storage.setItem(STORAGE_NAME, JSON.stringify(simpleItems));
   }
 }

@@ -10,7 +10,7 @@ describe('TodoItem', () => {
 
   describe('when creating a new instance', () => {
     it('should not mark the item as done', () => {
-      sut.isCompleted.should.be.false();
+      sut.isCompleted.should.be.false;
     });
 
     it('should set given title', () => {
@@ -23,18 +23,18 @@ describe('TodoItem', () => {
     });
 
     it('should not activate the edit mode', () => {
-      sut.isEditing.should.be.false();
+      sut.isEditing.should.be.false;
     });
 
     it('should have unset edit title', () => {
-      expect(sut.editTitle).to.be.null();
+      expect(sut.editTitle).to.be.null;
     });
   });
 
   describe('when double clicking an item', () => {
     it('should not set the edit mode when clicked only once', () => {
       sut.labelClicked();
-      sut.isEditing.should.be.false();
+      sut.isEditing.should.be.false;
     });
 
     // uuuh, not the best way to test time related stuff?
@@ -42,7 +42,7 @@ describe('TodoItem', () => {
       sut.labelClicked();
       setTimeout(() => {
         sut.labelClicked();
-        sut.isEditing.should.be.true();
+        sut.isEditing.should.be.true;
         done();
       }, 10);
     });
@@ -61,7 +61,7 @@ describe('TodoItem', () => {
       sut.labelClicked();
       setTimeout(() => {
         sut.labelClicked();
-        sut.isEditing.should.be.false();
+        sut.isEditing.should.be.false;
         done();
       }, 360);
     });
@@ -78,7 +78,7 @@ describe('TodoItem', () => {
 
         sut.finishEditing();
 
-        sut.isEditing.should.be.false();
+        sut.isEditing.should.be.false;
       });
 
       it('should update actual title with edit title', () => {
@@ -105,7 +105,7 @@ describe('TodoItem', () => {
         sut.onKeyUp({keyCode: 65});
 
         sut.finishEditing.should.not.have.been.called;
-        sut.isEditing.should.be.true();
+        sut.isEditing.should.be.true;
       });
 
       it('should finish editing mode when ESC pressed', () => {
@@ -114,7 +114,7 @@ describe('TodoItem', () => {
         sut.onKeyUp({keyCode: 27});
 
         sut.finishEditing.should.not.have.been.called;
-        sut.isEditing.should.be.false();
+        sut.isEditing.should.be.false;
       });
 
       it('should not update title when ESC pressed', () => {
