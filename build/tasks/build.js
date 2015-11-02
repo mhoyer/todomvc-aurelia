@@ -37,24 +37,6 @@ gulp.task('build-css', function () {
     .pipe(gulp.dest(paths.output));
 });
 
-gulp.task('build-export', function() {
-  var sources = [
-    'README.md',
-    'index.html',
-    'config.js',
-    'css/*',
-    'jspm_packages/*',
-    '!jspm_packages/*.src.js',
-    'jspm_packages/npm/todomvc-app-css@*/index.css',
-    'jspm_packages/npm/todomvc-common@*/base.*',
-    paths.output + '*.html',
-    paths.output + 'bundled.js'
-  ];
-
-  return gulp.src(sources, {base: "."})
-    .pipe(gulp.dest(paths.export));
-});
-
 gulp.task('build', function(callback) {
   return runSequence(
     'clean',
