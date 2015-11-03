@@ -1,16 +1,19 @@
+import {ObserverLocator} from 'aurelia-binding'
 import {TodoItem} from './todo-item';
 import _ from 'underscore';
 
 var STORAGE_NAME = 'todomvc-aurelia';
 
 export class Todos {
-  constructor(storage = null) {
+  static inject() { return [ObserverLocator]; }
+  constructor(observerLocator, storage = null) {
     this.items = [];
     this.filteredItems = [];
     this.filter = '';
     this.newTodoTitle = null;
     this.areAllChecked = false;
 
+    this.observerLocator = observerLocator;
     this.storage = storage || localStorage;
     this.load();
   }
@@ -26,25 +29,35 @@ export class Todos {
     if (title.length == 0) return;
 
     var newTodoItem = new TodoItem(title);
-    Object.observe(newTodoItem, (ev) => this.onItemChanged(ev));
-
+    this.observeItem(newTodoItem);
     this.items.push(newTodoItem);
     this.newTodoTitle = null;
     this.updateFilteredItems(this.filter);
     this.save();
   }
 
-  onItemChanged(ev) {
-    var todoItem = ev[0].object;
+  observeItem(todoItem) {
+    this.observerLocator
+      .getObserver(todoItem, 'title')
+      .subscribe((o, n) => this.onTitleChanged(todoItem));
+
+    this.observerLocator
+      .getObserver(todoItem, 'isCompleted')
+      .subscribe(() => this.onIsCompletedChanged());
+  }
+
+  onTitleChanged(todoItem) {
     if (todoItem.title == '') {
       this.deleteTodo(todoItem);
     }
 
     this.areAllChecked = _(this.items).all(i => i.isCompleted);
+    this.save();
+  }
 
-    if (ev[0].name == 'isCompleted') {
-      this.updateFilteredItems(this.filter);
-    }
+  onIsCompletedChanged() {
+    this.areAllChecked = _(this.items).all(i => i.isCompleted);
+    this.updateFilteredItems(this.filter);
 
     this.save();
   }
@@ -96,7 +109,7 @@ export class Todos {
       var todoItem = new TodoItem(item.title);
       todoItem.isCompleted = item.completed;
 
-      Object.observe(todoItem, (ev) => this.onItemChanged(ev));
+      this.observeItem(todoItem);
 
       return todoItem;
     });

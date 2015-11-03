@@ -3,15 +3,22 @@ import {Todos} from 'src/todos';
 
 describe('Todos', () =>{
   var sut;
-  var fakeStorage;
+  var fakeStorage, fakeObserverLocator;
 
   beforeEach(() => {
+    fakeObserverLocator = {
+      getObserver: sinon.stub()
+        .returns({
+          subscribe: sinon.stub()
+        })
+    };
+
     fakeStorage = {
       getItem: sinon.stub(),
       setItem: sinon.stub()
     };
 
-    sut = new Todos(fakeStorage);
+    sut = new Todos(fakeObserverLocator, fakeStorage);
   });
 
   describe('when creating a new instance', () => {
@@ -39,7 +46,7 @@ describe('Todos', () =>{
       // we should actually test for .load() gets called. But not easy when the ctor does the call.
       fakeStorage.getItem.reset();
 
-      new Todos(fakeStorage);
+      new Todos(fakeObserverLocator, fakeStorage);
 
       fakeStorage.getItem.should.have.been.calledOnce;
       fakeStorage.getItem.should.have.been.calledWith('todomvc-aurelia');
@@ -241,6 +248,7 @@ describe('Todos', () =>{
         sut.deleteTodo = sinon.spy();
 
         sut.items[0].title = '';
+        sut.onTitleChanged(sut.items[0]);
 
         setTimeout(() => {
           sut.deleteTodo.should.have.been.calledWith(sut.items[0]);
@@ -279,6 +287,7 @@ describe('Todos', () =>{
         sut.updateFilteredItems = sinon.spy();
 
         sut.items[0].isCompleted = true;
+        sut.onIsCompletedChanged();
 
         setTimeout(() => {
           sut.updateFilteredItems.should.have.been.calledOnce;
@@ -290,6 +299,7 @@ describe('Todos', () =>{
         sut.areAllChecked = true;
 
         sut.items[1].isCompleted = false;
+        sut.onIsCompletedChanged();
 
         setTimeout(() => {
           sut.areAllChecked.should.be.false;
@@ -301,7 +311,9 @@ describe('Todos', () =>{
         sut.areAllChecked = false;
 
         sut.items[0].isCompleted = true;
+        sut.onIsCompletedChanged();
         sut.items[1].isCompleted = true;
+        sut.onIsCompletedChanged();
 
         setTimeout(() => {
           sut.areAllChecked.should.be.true;
@@ -322,11 +334,21 @@ describe('Todos', () =>{
       });
     });
 
-    describe('when anything changes on a todo item instance', () => {
+    describe('when the title changes on a todo item instance', () => {
       it('should save the list of todo items', () => {
         sut.save = sinon.spy();
 
-        sut.onItemChanged([{object:sut.items[0]}]);
+        sut.onTitleChanged(sut.items[0]);
+
+        sut.save.should.have.been.calledOnce;
+      });
+    });
+
+    describe('when the completed state changes on a todo item instance', () => {
+      it('should save the list of todo items', () => {
+        sut.save = sinon.spy();
+
+        sut.onIsCompletedChanged();
 
         sut.save.should.have.been.calledOnce;
       });
