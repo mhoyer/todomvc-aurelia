@@ -43,8 +43,8 @@ System.config({
     "fetch": "github:github/fetch@0.9.0",
     "nodelibs-process": "github:jspm/nodelibs-process@0.1.2",
     "text": "github:systemjs/plugin-text@0.0.2",
-    "todomvc-app-css": "npm:todomvc-app-css@1.0.1",
-    "todomvc-common": "npm:todomvc-common@1.0.1",
+    "todomvc-app-css": "npm:todomvc-app-css@2.0.1",
+    "todomvc-common": "npm:todomvc-common@1.0.2",
     "underscore": "npm:underscore@1.8.3",
     "github:aurelia/animator-css@0.17.0": {
       "aurelia-metadata": "github:aurelia/metadata@0.9.0",

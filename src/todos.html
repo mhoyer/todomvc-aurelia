@@ -1,17 +1,17 @@
 <template>
   <import from="behaviors/focus"></import>
 
-  <header id="header">
+  <header class="header">
     <h1>todos</h1>
     <form role="form" submit.delegate="addNewTodo(newTodoTitle)">
-      <input id="new-todo" value.bind="newTodoTitle" placeholder="What needs to be done?" autofocus>
+      <input class="new-todo" value.bind="newTodoTitle" placeholder="What needs to be done?" autofocus>
     </form>
   </header>
 
-  <section id="main" show.bind="items.length">
-    <input id="toggle-all" type="checkbox" checked.bind="areAllChecked" change.delegate="areAllCheckedChanged()">
+  <section class="main" show.bind="items.length">
+    <input class="toggle-all" type="checkbox" checked.bind="areAllChecked" change.delegate="areAllCheckedChanged()">
     <label for="toggle-all">Mark all as complete</label>
-    <ul id="todo-list">
+    <ul class="todo-list">
       <li repeat.for="todoItem of filteredItems" class="${todoItem.isCompleted ? 'completed' : ''} ${todoItem.isEditing ? 'editing' : ''}">
         <div class="view">
           <input class="toggle" type="checkbox" checked.bind="todoItem.isCompleted">
@@ -28,11 +28,11 @@
     </ul>
   </section>
 
-  <footer id="footer" show.bind="items.length">
-    <span id="todo-count">
+  <footer class="footer" show.bind="items.length">
+    <span class="todo-count">
       <strong>${countTodosLeft}</strong>
       ${countTodosLeft == 1 ? 'item' : 'items'} left</span>
-    <ul id="filters">
+    <ul class="filters">
       <li>
         <a class="${filter == '!' ? 'selected' : ''}" href="#!/">All</a>
       </li>
@@ -43,6 +43,6 @@
         <a class="${filter == 'completed' ? 'selected' : ''}" href="#/completed">Completed</a>
       </li>
     </ul>
-    <button id="clear-completed" click.delegate="clearCompletedTodos()" show.bind="countTodosLeft < items.length"></button>
+    <button class="clear-completed" click.delegate="clearCompletedTodos()" show.bind="countTodosLeft < items.length">Clear completed</button>
   </footer>
 </template>
