@@ -1,23 +1,22 @@
 var gulp = require('gulp');
 var paths = require('../paths');
-var karma = require('gulp-karma');
+var Server = require('karma').Server;
 
-gulp.task('test', function() {
-  return gulp.src(paths.specsSrc)
-    .pipe(karma({
-      configFile: 'karma.conf.js',
-      action: 'run'
-    }))
-    .on('error', function(err) {
-      // Make sure failed tests cause gulp to exit non-zero
-      throw err;
-    });
+gulp.task('test', function (done) {
+  new Server({
+    configFile: __dirname + '/../../karma.conf.js',
+    singleRun: true
+  }, done).start();
 });
 
-gulp.task('watch-test', function() {
-  gulp.src(paths.specsSrc)
-    .pipe(karma({
-      configFile: 'karma.conf.js',
-      action: 'watch'
-    }));
+gulp.task('watch-test', function () {
+  new Server({
+    configFile: __dirname + '/../../karma.conf.js',
+  }).start();
+});
+
+gulp.task('tdd', function (done) {
+  new Server({
+    configFile: __dirname + '/../../karma.conf.js',
+  }, done).start();
 });
