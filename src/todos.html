@@ -3,9 +3,9 @@
 
   <header class="header">
     <h1>todos</h1>
-    <form role="form" submit.delegate="addNewTodo(newTodoTitle)">
-      <input class="new-todo" value.bind="newTodoTitle" placeholder="What needs to be done?" autofocus>
-    </form>
+    <input class="new-todo" placeholder="What needs to be done?" autofocus
+           keyup.delegate="onKeyUp($event)"
+           value.bind="newTodoTitle">
   </header>
 
   <section class="main" show.bind="items.length">

@@ -3,6 +3,7 @@ import {TodoItem} from './todo-item';
 import _ from 'underscore';
 
 var STORAGE_NAME = 'todomvc-aurelia';
+var ENTER_KEY = 13;
 
 export class Todos {
   static inject() { return [ObserverLocator]; }
@@ -20,6 +21,12 @@ export class Todos {
 
   activate(params) {
     this.updateFilteredItems(params.filter);
+  }
+
+  onKeyUp(ev) {
+    if(ev.keyCode == ENTER_KEY) {
+      this.addNewTodo(this.newTodoTitle);
+    }
   }
 
   addNewTodo(title = this.newTodoTitle) {
