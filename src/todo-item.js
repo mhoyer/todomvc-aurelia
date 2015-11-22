@@ -1,3 +1,4 @@
+var ENTER_KEY = 13;
 var ESC_KEY = 27;
 var lastLabelClick = Symbol();
 
@@ -30,6 +31,9 @@ export class TodoItem {
   }
 
   onKeyUp(ev) {
+    if(ev.keyCode == ENTER_KEY) {
+      return this.finishEditing();
+    }
     if(ev.keyCode == ESC_KEY) {
       this.editTitle = this.title;
       this.isEditing = false;

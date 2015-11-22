@@ -18,12 +18,11 @@
           <label click.delegate="todoItem.labelClicked()">${todoItem.title}</label>
           <button click.delegate="$parent.deleteTodo(todoItem)" class="destroy"></button>
         </div>
-        <form role="form" submit.delegate="todoItem.finishEditing()">
-          <input class="edit" value.bind="todoItem.editTitle"
-                 blur.delegate="todoItem.finishEditing()"
-                 keyup.delegate="todoItem.onKeyUp($event)"
-                 focus.bind="todoItem.isEditing">
-        </form>
+        <input class="edit"
+               value.bind="todoItem.editTitle"
+               focus.bind="todoItem.isEditing"
+               focusout.delegate="todoItem.finishEditing($event)"
+               keyup.delegate="todoItem.onKeyUp($event)">
       </li>
     </ul>
   </section>
