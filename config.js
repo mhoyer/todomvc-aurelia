@@ -36,14 +36,14 @@ System.config({
     "aurelia-templating-binding": "github:aurelia/templating-binding@0.16.1",
     "aurelia-templating-resources": "github:aurelia/templating-resources@0.16.1",
     "aurelia-templating-router": "github:aurelia/templating-router@0.17.0",
-    "babel": "npm:babel-core@5.8.33",
-    "babel-runtime": "npm:babel-runtime@5.8.29",
+    "babel": "npm:babel-core@5.8.34",
+    "babel-runtime": "npm:babel-runtime@5.8.34",
     "core-js": "npm:core-js@0.9.18",
     "css": "github:systemjs/plugin-css@0.1.10",
     "fetch": "github:github/fetch@0.9.0",
     "nodelibs-process": "github:jspm/nodelibs-process@0.1.2",
     "text": "github:systemjs/plugin-text@0.0.2",
-    "todomvc-app-css": "npm:todomvc-app-css@2.0.1",
+    "todomvc-app-css": "npm:todomvc-app-css@2.0.3",
     "todomvc-common": "npm:todomvc-common@1.0.2",
     "underscore": "npm:underscore@1.8.3",
     "github:aurelia/animator-css@0.17.0": {
@@ -227,7 +227,7 @@ System.config({
     "npm:assert@1.3.0": {
       "util": "npm:util@0.10.3"
     },
-    "npm:babel-runtime@5.8.29": {
+    "npm:babel-runtime@5.8.34": {
       "process": "github:jspm/nodelibs-process@0.1.2"
     },
     "npm:buffer@3.0.2": {
