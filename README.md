@@ -49,13 +49,21 @@ Run tests and HTTP-server:
 
 ### Changelog
 
+#### 0.2.0 (upcoming)
+
+- Fixed [#5 - ```<form>``` wrapping](https://github.com/mhoyer/todomvc-aurelia/issues/5)
+- Fixed [#10 - FF backslash bug](https://github.com/mhoyer/todomvc-aurelia/issues/10)
+- Fixed [#11 - IE11 support - Object.observe](https://github.com/mhoyer/todomvc-aurelia/issues/11)
+- Updated Aurelia dependencies to latest 1.0.0-beta.1
+- Updated todomvc assets to latest versions
+
 #### 0.1.1
 
 - Prepared all assets (README, learn.json, index.html, etc) to fulfill the [Contribution Docs](https://github.com/tastejs/todomvc/blob/master/contributing.md)
-- Cleaned up obsolete files (```*.src.js```, empty ```css/app.css```
-- Fixed #6
-- Fixed #7
-- Fixed #9
+- Cleaned up obsolete files (```*.src.js```, empty ```css/app.css```)
+- Fixed [#6](https://github.com/mhoyer/todomvc-aurelia/issues/6)
+- Fixed [#7](https://github.com/mhoyer/todomvc-aurelia/issues/7)
+- Fixed [#9](https://github.com/mhoyer/todomvc-aurelia/issues/9)
 
 #### 0.1.0
 
