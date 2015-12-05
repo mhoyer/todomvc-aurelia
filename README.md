@@ -49,7 +49,7 @@ Run tests and HTTP-server:
 
 ### Changelog
 
-#### 0.2.0 (upcoming)
+#### 0.2.0
 
 - Fixed [#5 - ```<form>``` wrapping](https://github.com/mhoyer/todomvc-aurelia/issues/5)
 - Fixed [#10 - FF backslash bug](https://github.com/mhoyer/todomvc-aurelia/issues/10)
