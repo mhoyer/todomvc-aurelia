@@ -39,6 +39,7 @@ export class Todos {
     this.observeItem(newTodoItem);
     this.items.push(newTodoItem);
     this.newTodoTitle = null;
+    this.updateAreAllCheckedState();
     this.updateFilteredItems(this.filter);
     this.save();
   }
@@ -56,14 +57,14 @@ export class Todos {
   onTitleChanged(todoItem) {
     if (todoItem.title == '') {
       this.deleteTodo(todoItem);
+      this.updateAreAllCheckedState();
     }
 
-    this.areAllChecked = _(this.items).all(i => i.isCompleted);
     this.save();
   }
 
   onIsCompletedChanged() {
-    this.areAllChecked = _(this.items).all(i => i.isCompleted);
+    this.updateAreAllCheckedState();
     this.updateFilteredItems(this.filter);
 
     this.save();
@@ -71,6 +72,7 @@ export class Todos {
 
   deleteTodo(todoItem) {
     this.items = _(this.items).without(todoItem);
+    this.updateAreAllCheckedState();
     this.updateFilteredItems(this.filter);
     this.save();
   }
@@ -89,6 +91,10 @@ export class Todos {
 
   get countTodosLeft() {
     return _(this.items).filter(i => !i.isCompleted).length;
+  }
+
+  updateAreAllCheckedState() {
+    this.areAllChecked = _(this.items).all(i => i.isCompleted);
   }
 
   updateFilteredItems(filter) {
@@ -120,6 +126,7 @@ export class Todos {
 
       return todoItem;
     });
+    this.updateAreAllCheckedState();
   }
 
   save() {

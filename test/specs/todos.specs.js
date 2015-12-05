@@ -79,6 +79,18 @@ describe('Todos', () =>{
       sut.items[1].title.should.be.equal('bar');
       sut.items[1].isCompleted.should.be.true;
     });
+
+    it('should activate are-all-checked state', (done) => {
+      fakeStorage.getItem
+        .returns('[{"title":"foo","completed":true}]');
+
+      sut.load();
+
+      setTimeout(() => {
+        sut.areAllChecked.should.be.true;
+        done();
+      }, 10);
+    });
   });
 
   describe('when activating the todo view model', () => {
@@ -207,6 +219,32 @@ describe('Todos', () =>{
       sut.items[1].isCompleted = true;
 
       setTimeout(done, 10);
+    });
+
+    describe('when adding a new todo', () => {
+      it('should reset are-all-checked state', (done) => {
+        sut.areAllChecked = true;
+
+        sut.addNewTodo("foo");
+
+        setTimeout(() => {
+          sut.areAllChecked.should.be.false;
+          done();
+        }, 10);
+      });
+    });
+
+    describe('when deleting a todo', () => {
+      it('should reset are-all-checked state', (done) => {
+        sut.areAllChecked = false;
+
+        sut.deleteTodo(sut.items[0]);
+
+        setTimeout(() => {
+          sut.areAllChecked.should.be.true;
+          done();
+        }, 10);
+      });
     });
 
     describe('when changing checked state for all todo items', () => {
