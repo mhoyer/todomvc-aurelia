@@ -1,11 +1,11 @@
 var gulp = require('gulp');
 var paths = require('../paths');
-var jshint = require('gulp-jshint');
-var stylish = require('jshint-stylish');
+var jscs = require('gulp-jscs');
 
-// runs jshint on all .js files
+// runs jscs linting on all .js files
 gulp.task('lint', function() {
   return gulp.src(paths.source)
-    .pipe(jshint())
-    .pipe(jshint.reporter(stylish));
+    .pipe(jscs())
+    .pipe(jscs.reporter())
+    .pipe(jscs.reporter('fail'));
 });
