@@ -37,10 +37,11 @@ gulp.task('build-css', function () {
     .pipe(gulp.dest(paths.output));
 });
 
+gulp.task('build-without-clean', ['build-system', 'build-html', 'build-css']);
 gulp.task('build', function(callback) {
   return runSequence(
     'clean',
-    ['build-system', 'build-html', 'build-css'],
+    'build-without-clean',
     callback
   );
 });
