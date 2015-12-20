@@ -1,16 +1,5 @@
 {
   "bundles": {
-    "dist/app-build": {
-      "includes": [
-        "[*]",
-        "*.html!text",
-        "*.css!text"
-      ],
-      "options": {
-        "inject": true,
-        "minify": false
-      }
-    },
     "dist/aurelia": {
       "includes": [
         "aurelia-framework",
@@ -22,11 +11,8 @@
         "aurelia-loader-default",
         "aurelia-logging-console",
         "aurelia-history-browser",
+        "text",
         "underscore"
-      ],
-      "__not_needed_for_todo_mvc": [
-        "aurelia-fetch-client",
-        "aurelia-animator-css"
       ],
       "options": {
         "inject": true,
