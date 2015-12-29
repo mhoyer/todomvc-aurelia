@@ -309,8 +309,7 @@ describe('Todos', () =>{
         sut.filter = 'active';
         sut.updateFilteredItems = sinon.spy();
 
-        sut.items[0].labelClicked();
-        sut.items[0].labelClicked();
+        sut.items[0].labelDoubleClicked();
 
         setTimeout(() => {
           sut.updateFilteredItems.should.not.have.been.calledOnce;

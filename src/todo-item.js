@@ -1,6 +1,5 @@
 var ENTER_KEY = 13;
 var ESC_KEY = 27;
-var lastLabelClick = Symbol();
 
 export class TodoItem {
 	constructor(title) {
@@ -8,21 +7,11 @@ export class TodoItem {
 		this.isEditing = false;
 		this.title = title.trim();
 		this.editTitle = null;
-
-		// private properties
-		this[lastLabelClick] = 0;
 	}
 
-	labelClicked() {
-		var now = Date.now();
-		var duration = now - this[lastLabelClick];
-
-		if (duration < 350) {
-			this.editTitle = this.title;
-			this.isEditing = true;
-		}
-
-		this[lastLabelClick] = Date.now();
+	labelDoubleClicked() {
+		this.editTitle = this.title;
+		this.isEditing = true;
 	}
 
 	finishEditing() {
