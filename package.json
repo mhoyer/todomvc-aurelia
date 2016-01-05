@@ -19,7 +19,7 @@
     "url": "https://github.com/mhoyer/todomvc-aurelia"
   },
   "devDependencies": {
-    "aurelia-bundler": "^0.1.8",
+    "aurelia-bundler": "^0.2.1",
     "aurelia-tools": "^0.1.3",
     "babel": "^5.8.29",
     "browser-sync": "^2.9.11",
