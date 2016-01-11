@@ -32,38 +32,18 @@ describe('TodoItem', () => {
   });
 
   describe('when double clicking an item', () => {
-    it('should not set the edit mode when clicked only once', () => {
-      sut.labelClicked();
-      sut.isEditing.should.be.false;
-    });
-
-    // uuuh, not the best way to test time related stuff?
-    it('should activate the edit mode when double clicked within e.g. 50ms', (done) => {
-      sut.labelClicked();
-      setTimeout(() => {
-        sut.labelClicked();
-        sut.isEditing.should.be.true;
-        done();
-      }, 10);
+    it('should activate the edit mode when double clicked', () => {
+      sut.labelDoubleClicked();
+      sut.isEditing.should.be.true;
     });
 
     it('should update edit title with current todo title', () => {
       sut.editTitle = "";
       sut.title = "foo";
 
-      sut.labelClicked();
-      sut.labelClicked();
+      sut.labelDoubleClicked();
 
       sut.editTitle.should.be.equal("foo");
-    });
-
-    it('should not activate the edit mode when double clicked two slow > 350ms', (done) => {
-      sut.labelClicked();
-      setTimeout(() => {
-        sut.labelClicked();
-        sut.isEditing.should.be.false;
-        done();
-      }, 360);
     });
   });
 

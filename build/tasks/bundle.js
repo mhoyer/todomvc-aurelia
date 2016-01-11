@@ -9,9 +9,8 @@ var config = {
 };
 
 gulp.task('bundle', function() {
- return bundler.bundle(config);
+  return bundler.bundle(config);
 });
-
 gulp.task('unbundle', function() {
- return bundler.unbundle(config);
+  return bundler.unbundle(config);
 });

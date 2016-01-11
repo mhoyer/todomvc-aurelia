@@ -13,7 +13,7 @@ var notify = require("gulp-notify");
 // the plumber() call prevents 'pipe breaking' caused
 // by errors from other gulp plugins
 // https://www.npmjs.com/package/gulp-plumber
-gulp.task('build-system', function () {
+gulp.task('build-system', ['lint'], function () {
   return gulp.src(paths.source)
     .pipe(plumber({errorHandler: notify.onError("Error: <%= error.message %>")}))
     .pipe(changed(paths.output, {extension: '.js'}))
@@ -37,10 +37,11 @@ gulp.task('build-css', function () {
     .pipe(gulp.dest(paths.output));
 });
 
+gulp.task('build-without-clean', ['build-system', 'build-html', 'build-css']);
 gulp.task('build', function(callback) {
   return runSequence(
     'clean',
-    ['build-system', 'build-html', 'build-css'],
+    'build-without-clean',
     callback
   );
 });
