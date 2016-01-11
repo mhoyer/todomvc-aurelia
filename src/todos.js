@@ -2,8 +2,8 @@ import {ObserverLocator} from 'aurelia-binding';
 import {TodoItem} from './todo-item';
 import _ from 'underscore';
 
-var STORAGE_NAME = 'todomvc-aurelia';
-var ENTER_KEY = 13;
+const STORAGE_NAME = 'todomvc-aurelia';
+const ENTER_KEY = 13;
 
 export class Todos {
 	static inject() { return [ObserverLocator]; }
@@ -24,7 +24,7 @@ export class Todos {
 	}
 
 	onKeyUp(ev) {
-		if (ev.keyCode == ENTER_KEY) {
+		if (ev.keyCode === ENTER_KEY) {
 			this.addNewTodo(this.newTodoTitle);
 		}
 	}
@@ -33,9 +33,9 @@ export class Todos {
 		if (title == undefined) { return; }
 
 		title = title.trim();
-		if (title.length == 0) { return; }
+		if (title.length === 0) { return; }
 
-		var newTodoItem = new TodoItem(title);
+		const newTodoItem = new TodoItem(title);
 		this.observeItem(newTodoItem);
 		this.items.push(newTodoItem);
 		this.newTodoTitle = null;
@@ -55,7 +55,7 @@ export class Todos {
 	}
 
 	onTitleChanged(todoItem) {
-		if (todoItem.title == '') {
+		if (todoItem.title === '') {
 			this.deleteTodo(todoItem);
 			this.updateAreAllCheckedState();
 		}
@@ -77,8 +77,12 @@ export class Todos {
 		this.save();
 	}
 
-	areAllCheckedChanged() {
-		_.each(this.items, i => i.isCompleted = this.areAllChecked);
+	onToggleAllChanged() {
+		this.items = _.map(this.items, item => {
+			item.isCompleted = this.areAllChecked;
+			return item;
+		});
+
 		this.updateFilteredItems(this.filter);
 	}
 
@@ -114,12 +118,12 @@ export class Todos {
 	}
 
 	load() {
-		var storageContent = this.storage.getItem(STORAGE_NAME);
+		const storageContent = this.storage.getItem(STORAGE_NAME);
 		if (storageContent == undefined) { return; }
 
-		var simpleItems = JSON.parse(storageContent);
+		const simpleItems = JSON.parse(storageContent);
 		this.items = _.map(simpleItems, item => {
-			var todoItem = new TodoItem(item.title);
+			const todoItem = new TodoItem(item.title);
 			todoItem.isCompleted = item.completed;
 
 			this.observeItem(todoItem);
@@ -130,7 +134,7 @@ export class Todos {
 	}
 
 	save() {
-		var simpleItems = _.map(this.items, item => { return {
+		const simpleItems = _.map(this.items, item => { return {
 			title: item.title,
 			completed: item.isCompleted
 		}});

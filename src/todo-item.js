@@ -1,5 +1,5 @@
-var ENTER_KEY = 13;
-var ESC_KEY = 27;
+const ENTER_KEY = 13;
+const ESC_KEY = 27;
 
 export class TodoItem {
 	constructor(title) {
@@ -20,10 +20,10 @@ export class TodoItem {
 	}
 
 	onKeyUp(ev) {
-		if (ev.keyCode == ENTER_KEY) {
+		if (ev.keyCode === ENTER_KEY) {
 			return this.finishEditing();
 		}
-		if (ev.keyCode == ESC_KEY) {
+		if (ev.keyCode === ESC_KEY) {
 			this.editTitle = this.title;
 			this.isEditing = false;
 		}

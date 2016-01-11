@@ -250,7 +250,7 @@ describe('Todos', () =>{
     describe('when changing checked state for all todo items', () => {
       it('should check all todo items', () => {
         sut.areAllChecked = true;
-        sut.areAllCheckedChanged();
+        sut.onToggleAllChanged();
 
         sut.items[0].isCompleted.should.be.true;
         sut.items[1].isCompleted.should.be.true;
@@ -258,7 +258,7 @@ describe('Todos', () =>{
 
       it('should uncheck all todo items', () => {
         sut.areAllChecked = false;
-        sut.areAllCheckedChanged();
+        sut.onToggleAllChanged();
 
         sut.items[0].isCompleted.should.be.false;
         sut.items[1].isCompleted.should.be.false;
@@ -268,14 +268,14 @@ describe('Todos', () =>{
         sut.updateFilteredItems = sinon.spy();
 
         sut.areAllChecked = true;
-        sut.areAllCheckedChanged();
+        sut.onToggleAllChanged();
 
         sut.updateFilteredItems.should.have.been.called;
       });
 
       it('should set current are-all-checked state', () => {
         sut.areAllChecked = true;
-        sut.areAllCheckedChanged();
+        sut.onToggleAllChanged();
 
         sut.areAllChecked.should.be.true;
       });
